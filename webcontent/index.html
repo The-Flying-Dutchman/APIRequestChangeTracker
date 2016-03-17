@@ -5,12 +5,8 @@
 <script>
 $(function(){
 	setTimeout(function(){
-		$('.palette').show();
-		$('.palette').addClass("fadeIn");
-	},1500);
-	setTimeout(function(){
-		$('.palette').addClass("rotate");
-	},5500);
+		$('.logo').addClass("zoom");
+	},4000);
 	$(".register-section .login-tag").click(function(){
 		$(".register-section").addClass("rotateOut");
 		setTimeout(function(){
@@ -18,7 +14,7 @@ $(function(){
 			$(".register-section").hide();
 			$(".login-section").show();
 			$(".login-section").addClass("rotateIn");
-		},1000);
+		},400);
 	});
 	$(".login-section .register-tag").click(function(){
 		$(".login-section").addClass("rotateOut");
@@ -27,44 +23,32 @@ $(function(){
 			$(".login-section").hide();
 			$(".register-section").show();
 			$(".register-section").addClass("rotateIn");
-		},1000);
+		},400);
 	});
 	
 });
 </script>
 <style>
 body{
-	background: url("background.jpg") no-repeat;
+	background: url("images/background.jpg") no-repeat;
 	background-size: 100%;
 	font-family: Arial;
 	font-size: 18px;
 }
+/* -- Logo Section --*/
 .logo{
-	width:667px;
-	height:539px;
+	width:324px;
+	height:108px;
 	position: absolute;
-	top: 0;
-	left: 0;
+	top: 4%;
+	left: 3%;
 }
 .logo img{
 	width:100%;
 	height:100%;
 	position: relative;
 }
-.palette{
-	width:492px;
-	height:492px;
-	position: absolute;
-	top: -160px;
-	left: 20px;
-	z-index: -1;
-	display: none;
-}
-.palette img{
-	width:100%;
-	height:100%;
-	position: relative;
-}
+/* -- Login Section --*/
 .login-section{
 	width:25%;
 	height:55%;
@@ -95,6 +79,10 @@ body{
 .login-section>.tag>p:nth-child(2){
 	background-color: #435159;
 	color:#93A6A4;
+	cursor: pointer;
+}
+.login-section>.tag>p:nth-child(2):hover{
+	background-color: #334149;
 }
 .login-section>.content{
 	width:90%;
@@ -108,8 +96,9 @@ body{
 	width:80%;
 	height:10%;
 	margin:5%;
-	border: 2px solid #FDF778	;
+	border: 2px solid #FDF778;
 	border-radius: 10px;
+	padding: 0 0.5em;
 	outline: none;
 	box-shadow:0 0 10px 5px #FDF778;
 	color:#333;
@@ -125,7 +114,12 @@ body{
 	box-shadow:3px 3px 10px 3px #222;
 	color:#333;
 	font-size: 18px;
+	cursor: pointer;
 }
+.login-section>.content>form>input[type="button"]:hover{
+	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
+}
+/* -- Register Section --*/
 .register-section{
 	width:25%;
 	height:55%;
@@ -144,7 +138,7 @@ body{
 }
 .register-section>.tag>p{
 	width:50%;
-	height:80px%;
+	height:80px;
 	position: relative;
 	float:left;
 	text-align: center;
@@ -153,6 +147,10 @@ body{
 .register-section>.tag>p:nth-child(1){
 	background-color: #435159;
 	color:#93A6A4;
+	cursor: pointer;
+}
+.register-section>.tag>p:nth-child(1):hover{
+	background-color: #334149;
 }
 .register-section>.tag>p:nth-child(2){
 	background-color: #1AB188;
@@ -172,6 +170,7 @@ body{
 	margin:3%;
 	border: 2px solid #FD9B0C;
 	border-radius: 10px;
+	padding: 0 0.5em;
 	outline: none;
 	box-shadow:0 0 10px 5px #FD9B0C;
 	color:#333;
@@ -187,7 +186,13 @@ body{
 	box-shadow:3px 3px 10px 3px #222;
 	color:#333;
 	font-size: 18px;
+	cursor: pointer;
 }
+.register-section>.content>form>input[type="button"]:hover{
+	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
+}
+
+/* -- Request Section --*/
 .request-section{
 	width:45%;
 	height:40%;
@@ -218,6 +223,7 @@ body{
 	margin:3%;
 	border: 2px solid #D7F28B;
 	border-radius: 10px;
+	padding: 0 0.5em;
 	outline: none;
 	box-shadow:0 0 10px 5px #D7F28B;
 	color:#333;
@@ -233,9 +239,14 @@ body{
 	box-shadow:3px 3px 10px 3px #222;
 	color:#333;
 	font-size: 18px;
+	cursor: pointer;
+}
+.request-section>.content>form>input[type="button"]:hover{
+	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
 }
 
 
+/* -- Animation -- */
 .bounceInFromTop{
 	-webkit-animation: bounceInFromTop 2s ease ;
 	animation: bounceInFromTop 2s ease;
@@ -245,20 +256,20 @@ body{
 	animation: bounceInFromLeft 3s ease;
 }
 .rotateIn{
-	-webkit-animation: rotateIn 1s linear;
-	animation: rotateIn 1s linear;
+	-webkit-animation: rotateIn 0.4s linear;
+	animation: rotateIn 0.4s linear;
 }
 .rotateOut{
-	-webkit-animation: rotateOut 1s linear;
-	animation: rotateOut 1s linear;
+	-webkit-animation: rotateOut 0.4s linear;
+	animation: rotateOut 0.4s linear;
 }
 .fadeIn{
 	-webkit-animation: fadeIn 4s linear;
 	animation: fadeIn 4s linear;
 }
-.rotate{
-	-webkit-animation: rotate 5s linear infinite;
-	animation: rotate 5s linear infinite;
+.zoom{
+	-webkit-animation: zoom 10s linear infinite;
+	animation: zoom 10s linear infinite;
 }
 @-webkit-keyframes bounceInFromTop {
 	0% {-webkit-transform: translateY(-150%);opacity:0.5;}
@@ -283,18 +294,18 @@ body{
 	60% {opacity:0;}
 	100% {opacity:1;}
 }
-@-webkit-keyframes rotate {
-	0% {-webkit-transform: rotateZ(0);}
-	100% { -webkit-transform: rotateZ(360deg); }
+@-webkit-keyframes zoom {
+	0% {-webkit-transform: scale(1);}
+	25% { -webkit-transform: scale(1.1); }
+	50% { -webkit-transform: scale(1); }
+	75% { -webkit-transform: scale(0.9); }
+	100% {-webkit-transform: scale(1);}
 }
 </style>
 </head>
 <body>
 <div class="logo fadeIn">
-	<image src="logo.png" />
-</div>
-<div class="palette">
-	<image src="palette.jpg" />
+	<image src="images/logo2.png" />
 </div>
 <div class="login-section bounceInFromTop">
 	<div class="tag">
@@ -303,7 +314,7 @@ body{
 	</div>
 	<div class="content">
 		<form>
-			<input type="text" placeholder=" Username" />
+			<input type="text" placeholder=" Email" />
 			<input type="password" placeholder=" Password" />
 			<input type="button" value="LOGIN" />
 		</form>
@@ -316,7 +327,7 @@ body{
 	</div>
 	<div class="content">
 		<form>
-			<input type="text" placeholder=" Username" />
+			<input type="text" placeholder=" Email" />
 			<input type="password" placeholder=" Password" />
 			<input type="password" placeholder=" Password Verification" />
 			<input type="button" value="SUBMIT" />

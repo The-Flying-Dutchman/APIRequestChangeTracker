@@ -1,0 +1,460 @@
+﻿<!DOCTYPE>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-2.2.1.min.js" integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00=" crossorigin="anonymous"></script>
+<script>
+$(function(){
+	setTimeout(function(){
+		$('.logo').addClass("zoom");
+	},4000);
+	setTimeout(function(){
+		$('.current-request-section').addClass("bounceInFromBottom");
+		$('.current-request-section').show();
+	},2500);
+	$(".edit-icon").click(function(){
+		var parent = $(this).parent();
+		var original_url = parent.children("p:nth-of-type(1)").children("span").text();
+		var original_time_interval = parent.children("p:nth-of-type(2)").children("span").text();
+		parent.siblings(".edit").children("form").children("input:nth-of-type(1)").val(original_url);
+		parent.siblings(".edit").children("form").children("input:nth-of-type(2)").val(original_time_interval);
+		parent.addClass("flipOut");
+		setTimeout(function(){
+			parent.removeClass("flipOut");
+			parent.hide();
+			parent.siblings(".edit").show();
+			parent.siblings(".edit").addClass("flipIn");
+		},500);
+	});
+	$(".cancel-icon").click(function(){
+		var parent = $(this).parent();
+		parent.addClass("flipOut");
+		setTimeout(function(){
+			parent.removeClass("flipOut");
+			parent.hide();
+			parent.siblings(".display").show();
+			parent.siblings(".display").addClass("flipIn");
+		},500);
+	});
+});
+</script>
+<style>
+body{
+	background: url("images/background.jpg") repeat-y;
+	background-size: 100%;
+	font-family: Arial;
+	font-size: 18px;
+}
+/* -- logo Section --*/
+.logo{
+	width:324px;
+	height:108px;
+	position: absolute;
+	top: 4%;
+	left: 3%;
+}
+.logo img{
+	width:100%;
+	height:100%;
+	position: relative;
+}
+/* -- New Request Section --*/
+.new-request-section{
+	width:50%;
+	height:40%;
+	position: absolute;
+	background: rgba(255,255,255,0.8);
+	top:8%;
+	left:25%;
+	border-radius: 25px;
+}
+.new-request-section>.tag{
+	width:90%;
+	height:20%;
+	margin:0 auto;
+	position: relative;
+	text-align: center;
+	font-size: 1.6em;
+}
+.new-request-section>.tag>p{
+	width:12em;
+	height:1em;
+	position: absolute;
+	margin: -0.5em 0 0 -6em;
+	top:50%;
+	left:50%;
+}
+.new-request-section>.tag>hr{
+	display: block;
+    margin: 0 auto;
+    border-style: inset;
+    border-width: 1px;
+}
+.new-request-section>.content{
+	width:90%;
+	height:90%;
+	position: relative;
+	margin: 0 auto;
+	text-align: center;
+}
+.new-request-section>.content>form>p{
+	width:80%;
+	height:15%;
+	margin:0 auto;
+}
+.new-request-section>.content>form>input[type="text"]{
+	width:80%;
+	height:15%;
+	margin:1%;
+	border: 2px solid #D7F28B;
+	border-radius: 10px;
+	padding: 0 0.5em;
+	outline: none;
+	box-shadow:0 0 10px 5px #D7F28B;
+	color:#333;
+	font-size: 18px;
+}
+.new-request-section>.content>form input:nth-child(1){
+	width:20%;
+	height:75%;
+	margin:0 2em;
+	background: -webkit-linear-gradient(#FDED21, #FF9E0F);
+	border-radius: 10px;
+	outline: none;
+	box-shadow:3px 3px 10px 3px #222;
+	color:#333;
+	font-size: 18px;
+	cursor: pointer;
+}
+.new-request-section>.content>form input:nth-child(1):hover{
+	background: -webkit-linear-gradient(#EDCD21, #FF9E0F);
+}
+.new-request-section>.content>form input:nth-child(4){
+	width:94%;
+	height:15%;
+	margin:3% auto;
+	background: -webkit-linear-gradient(#7DC0E3, #4978D6);
+	border-radius: 10px;
+	outline: none;
+	box-shadow:3px 3px 10px 3px #222;
+	color:#333;
+	font-size: 18px;
+	cursor: pointer;
+}
+.new-request-section>.content>form input:nth-child(4):hover{
+	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
+}
+/* -- Current Request Section --*/
+.current-request-section-list{
+	width:50%;
+	height:60%;
+	position: absolute;
+	top:50%;
+	left:25%;
+	border-radius: 25px;
+	text-align: center;
+}
+.current-request-section{
+	width:100%
+	height:100%;
+	display: none;
+	margin: 0;
+	padding: 0;
+}
+.current-request-section>.display{
+	width:96%;
+	height:20%;
+	position: relative;
+	margin: 1em auto;
+	padding: 0.6em 1em;
+	background: rgba(255,255,255,0.8);
+	border-radius: 25px;
+	text-align: left;
+}
+.current-request-section>.display>p{
+	width:70%;
+	height:20%;
+	margin: 1em;
+	border-radius: 25px;
+}
+.current-request-section>.display>a:nth-of-type(1){
+	width: 3em;
+	height: 3em;
+	position: absolute;
+	top:50%;
+	right: 7em;
+	margin: -1.5em 0;
+	cursor: pointer;
+	-webkit-transition:all 0.2s;
+}
+.current-request-section>.display>a:nth-of-type(1):hover{
+	width: 4em;
+	height: 4em;
+	position: absolute;
+	top:50%;
+	right: 6.5em;
+	margin: -2em 0;
+	cursor: pointer;
+}
+.current-request-section>.display>a:nth-of-type(2){
+	width: 3em;
+	height: 3em;
+	position: absolute;
+	top:50%;
+	right: 2em;
+	margin: -1.5em 0;
+	cursor: pointer;
+	-webkit-transition:all 0.2s;
+}
+.current-request-section>.display>a:nth-of-type(2):hover{
+	width: 4em;
+	height: 4em;
+	position: absolute;
+	top:50%;
+	right: 1.5em;
+	margin: -2em 0;
+	cursor: pointer;
+}
+.current-request-section>.display>a>img{
+	width: 100%;
+	height: 100%;
+}
+.current-request-section>.edit{
+	width:96%;
+	height:20%;
+	position: relative;
+	margin: 1em auto;
+	padding: 0.6em 1em;
+	background: rgba(255,255,255,0.8);
+	border-radius: 25px;
+	text-align: left;
+	display: none;
+}
+.current-request-section>.edit>form>input[type="text"]{
+	width:70%;
+	height:35%;
+	margin:1%;
+	border: 2px solid #FD9B0C;
+	border-radius: 10px;
+	padding: 0 0.5em;
+	outline: none;
+	box-shadow:0 0 10px 5px #FD9B0C;
+	color:#333;
+	font-size: 18px;
+}
+.current-request-section>.edit>a:nth-of-type(1){
+	width: 3em;
+	height: 3em;
+	position: absolute;
+	top:50%;
+	right: 7em;
+	margin: -1.5em 0;
+	cursor: pointer;
+	-webkit-transition:all 0.2s;
+}
+.current-request-section>.edit>a:nth-of-type(1):hover{
+	width: 4em;
+	height: 4em;
+	position: absolute;
+	top:50%;
+	right: 6.5em;
+	margin: -2em 0;
+	cursor: pointer;
+}
+.current-request-section>.edit>a:nth-of-type(2){
+	width: 3em;
+	height: 3em;
+	position: absolute;
+	top:50%;
+	right: 2em;
+	margin: -1.5em 0;
+	cursor: pointer;
+	-webkit-transition:all 0.2s;
+}
+.current-request-section>.edit>a:nth-of-type(2):hover{
+	width: 4em;
+	height: 4em;
+	position: absolute;
+	top:50%;
+	right: 1.5em;
+	margin: -2em 0;
+	cursor: pointer;
+}
+.current-request-section>.edit>a>img{
+	width: 100%;
+	height: 100%;
+}
+
+/*-- Animation --*/
+.bounceInFromTop{
+	-webkit-animation: bounceInFromTop 2s ease ;
+	animation: bounceInFromTop 2s ease;
+}
+.bounceInFromBottom{
+	-webkit-animation: bounceInFromBottom 2s ease ;
+	animation: bounceInFromBottom 2s ease;
+}
+.flipIn{
+	-webkit-animation: flipIn 0.5s linear;
+	animation: flipIn 0.5s linear;
+}
+.flipOut{
+	-webkit-animation: flipOut 0.5s linear;
+	animation: flipOut 0.5s linear;
+}
+.fadeIn{
+	-webkit-animation: fadeIn 0.5s linear;
+	animation: fadeIn 0.5s linear;
+}
+.zoom{
+	-webkit-animation: zoom 10s linear infinite;
+	animation: zoom 10s linear infinite;
+}
+@-webkit-keyframes bounceInFromTop {
+	0% {-webkit-transform: translateY(-150%);opacity:0.5;}
+	25% {-webkit-transform: translateY(-150%);opacity:0.5;}
+	100% { -webkit-transform: translateY(0%);opacity:1; }
+}
+@-webkit-keyframes bounceInFromBottom {
+	0% {-webkit-transform: translateY(350%);opacity:0.5;}
+	100% { -webkit-transform: translateY(0%);opacity:1; }
+}
+@-webkit-keyframes flipIn {
+	0% {-webkit-transform: rotateX(90deg);opacity:0.6;}
+	100% { -webkit-transform: rotateX(0);opacity:1; }
+}
+@-webkit-keyframes flipOut {
+	0% {-webkit-transform: rotateX(0);opacity:1;}
+	100% { -webkit-transform: rotateX(90deg);opacity:0.6; }
+}
+@-webkit-keyframes fadeIn {
+	0% {opacity:0;}
+	60% {opacity:0;}
+	100% {opacity:1;}
+}
+@-webkit-keyframes zoom {
+	0% {-webkit-transform: scale(1);}
+	25% { -webkit-transform: scale(1.1); }
+	50% { -webkit-transform: scale(1); }
+	75% { -webkit-transform: scale(0.9); }
+	100% {-webkit-transform: scale(1);}
+}
+</style>
+</head>
+<body>
+<div class="logo fadeIn">
+	<image src="images/logo2.png" />
+</div>
+<div class="new-request-section bounceInFromTop">
+	<div class="tag">
+		<p>CREATE NEW REQUEST</p>
+	</div>
+	<div class="content">
+		<form>
+			<p>Email: 1234567@gmail.com <input type="button" value="LOGOUT" /></p>
+			<input type="text" placeholder=" Request URL" />
+			<input type="text" placeholder=" Time interval" />
+			<input type="button" value="SUBMIT" />
+		</form>
+	</div>
+</div>
+<div class="current-request-section-list">
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.google.com</span></p>
+			<p>Time interval:<span>12h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.youtube.com</span></p>
+			<p>Time interval:<span>112h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.twitter.com</span></p>
+			<p>Time interval:<span>1112h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.google.com</span></p>
+			<p>Time interval:<span>12h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.youtube.com</span></p>
+			<p>Time interval:<span>112h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+	<div class="current-request-section">
+		<div class="display">
+			<p>Request URL:<span>https://www.twitter.com</span></p>
+			<p>Time interval:<span>1112h</span></p>
+			<a class="edit-icon"><img src="images/edit.png" /></a>
+			<a class="delete-icon"><img src="images/delete.png" /></a>
+		</div>
+		<div class="edit">
+			<form>
+				<input type="text" placeholder=" Request URL" />
+				<input type="text" placeholder=" Time interval" />
+			</form>
+			<a class="confirm-icon"><img src="images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
