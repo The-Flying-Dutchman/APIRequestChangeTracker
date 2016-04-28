@@ -16,18 +16,17 @@
 		<p class="login-tag">LOGIN</p>
 		<p class="register-tag">REGISTER</p>
 	</div>
-	<textarea id="input"></textarea> 
 	<!-- used for global variable -->
 	<div class="content">
 		<form id = "myForm" action="/login"> <!-- placeholder value for Wei Li's API -->
-			Email: <input type="text" name="email" placeholder=" Email" />
-			Password: <input type="password" name="password" placeholder=" Password" />
+			<input type="text" id="email" placeholder=" Email" />
+			<input type="password" name="password" placeholder=" Password" />
 			<button onclick="checkLogin()" id="myButton" class="buttonDesign">LOGIN</button>
 		</form>
 		<script type="text/javascript">
 					(function(global){
 						document.getElementById("myButton").addEventListener("click",function(){
-							global.localStorage.setItem("mySharedData", document.getElementById("output").value);
+							global.localStorage.setItem("mySharedData", document.getElementById("printEmail").value);
 						}, false);
 					}(window));
 					

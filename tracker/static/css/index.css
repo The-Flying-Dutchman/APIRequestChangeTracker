@@ -73,7 +73,7 @@ body{
 	color:#333;
 	font-size: 18px;
 }
-.login-section>.content>form>input[type="button"]{
+.login-section>.content>form>button{
 	width:94%;
 	height:15%;
 	margin:12% auto;
@@ -85,7 +85,7 @@ body{
 	font-size: 18px;
 	cursor: pointer;
 }
-.login-section>.content>form>input[type="button"]:hover{
+.login-section>.content>form>button:hover{
 	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
 }
 /* -- Register Section --*/
@@ -145,10 +145,10 @@ body{
 	color:#333;
 	font-size: 18px;
 }
-.register-section>.content>form>input[type="button"]{
+.register-section>.content>form>button{
 	width:94%;
 	height:15%;
-	margin:12% auto;
+	margin:10% auto;
 	background: -webkit-linear-gradient(#7DC0E3, #4978D6);
 	border-radius: 10px;
 	outline: none;
@@ -157,12 +157,12 @@ body{
 	font-size: 18px;
 	cursor: pointer;
 }
-.register-section>.content>form>input[type="button"]:hover{
+.register-section>.content>form>button:hover{
 	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
 }
 
 /* -- Request Section --*/
-.request-section{
+/* .request-section{
 	width:45%;
 	height:40%;
 	position: absolute;
@@ -212,7 +212,7 @@ body{
 }
 .request-section>.content>form>input[type="button"]:hover{
 	background: -webkit-linear-gradient(#5DA0D3, #2958B6);
-}
+} */
 
 
 /* -- Animation -- */
