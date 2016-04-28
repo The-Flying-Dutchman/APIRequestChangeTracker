@@ -1,4 +1,4 @@
-﻿<!DOCTYPE>
+<!DOCTYPE>
 <html>
 <head>
 
@@ -18,31 +18,34 @@
 	</div>
 	<!-- used for global variable -->
 	<div class="content">
-		<form id = "loginForm"> <!-- placeholder value for Wei Li's API -->
-			<input type="text" id="email" placeholder=" Email" />
-			<input type="password" name="password" placeholder=" Password" />
+		<form id = "myForm" action="/login" method = "post"> <!-- placeholder value for Wei Li's API -->
+			<input type="text" id="email" name ="email" placeholder=" Email" />
+			<input type="password" id = "pass" name="password" placeholder=" Password" />
 			<button onclick="checkLogin()" id="myButton" class="buttonDesign">LOGIN</button>
 		</form>
 		<script type="text/javascript">
-					(function(global){
-						document.getElementById("myButton").addEventListener("click",function(){
-							global.localStorage.setItem("mySharedData", document.getElementById("printEmail").value);
-						}, false);
-					}(window));
-
+					
 					(function checkLogin(){
 						$.ajax({
-							type: "post",
+							type: "POST",
 							url: "/login",
-							data:$("#loginForm").serializeArray(),
+							data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
 							dataType: "json",
 							contentType:"application/json",
-							success:function(text) {
-								var result = JSON.parse(text);
-								if(result )
+							success: function(data) {
+								if (data.message == "success") {
+									//redriect to user
+
+									'<%Session["user_id"] = "'+data.user_id+'"%>';
+									alert('<%=Session["user_id"] %>');
+									// user_id = data.user_id
+									window.open("user.html");
+								} else {
+								}
 							}
-						});
-					});	
+							})	
+						});	
+
 		</script>
 	</div>
 </div>
@@ -54,19 +57,34 @@
 	<div class="content">
 		<form id="myForm2" action="/register" method ="post"><!--PLACEHOLDER-->
 			<input type="text" name="email" placeholder="Email"/>
-			<input type="password" name="password" placeholder=" Password" />
-			<input type="password" name="verify" placeholder=" Password Verification" />
+			<input type="password" id="pass "name="password" placeholder=" Password" />
+			<input type="password" id="ver" name="verify" placeholder=" Password Verification" />
 			<button onclick="submitForm()" id="myButton" class="buttonDesign" >SUBMIT</button> 
 		</form>
 		<script type="text/javascript">
 					(function submitForm(){
+						if($("#pass").val() == $("#ver").val()){
 						$.ajax({
-							type: "post",
+							type: "POST",
 							url: "/register",
+							data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
 							dataType: "json",
 							contentType:"application/json"
-							})
-						});
+							success: function(data) {
+								if (data.message == "success") {
+										//redriect to user
+
+									'<%Session["user_id"] = "'+data.user_id+'"%>';
+									alert('<%=Session["user_id"] %>');
+									// user_id = data.user_id
+									window.open("user.html");
+								} else {
+									//user info wrong
+								}
+							}
+							})	
+						}
+						});	
 		</script>
 	</div>
 </div>
