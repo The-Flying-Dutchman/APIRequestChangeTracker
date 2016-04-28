@@ -6,12 +6,11 @@
 		success: function(data){
 			var array = data;
 			for(var i=0; i<=array.length; i++){
-				var content = '<div class="current-request-section">
-				<p>Request URL:<span>'+array[i]["request_url"]+'</span></p>
-				<p>Time interval:<span>'+aray[i]["request_interval"]+'</span></p>
-				<a class="edit-icon"><img src="images/edit.png" /></a>
-				<a class="delete-icon"><img src="images/delete.png" /></a>
-				</div>';
+				var content = '<div class="current-request-section">';
+				content += '<p>Request URL:<span>'+array[i]["request_url"]+'</span></p>';
+				content+='<p>Time interval:<span>'+array[i]["request_interval"]+'</span></p>';
+				content+='<a class="edit-icon"><img src="images/edit.png" /></a>';
+				content+='<a class="delete-icon"><img src="images/delete.png" /></a></div>';
 				$(".current-request-section-list").append(content);
 			}
 		}, error: function(error) {
