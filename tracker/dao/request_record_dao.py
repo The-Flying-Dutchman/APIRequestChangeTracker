@@ -1,5 +1,4 @@
 from sql_connection import SqlConnection
-import pymysql.cursors
 
 
 class RequestRecordDao:

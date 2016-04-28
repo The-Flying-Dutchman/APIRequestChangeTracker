@@ -1,5 +1,4 @@
 from sql_connection import SqlConnection
-import pymysql.cursors
 
 class UserDao:
     def __init__(self):
@@ -56,5 +55,5 @@ class UserDao:
         else:
             return "Please pass in user id"
 
-# user_dao = UserDao()
-# print user_dao.select_user_by_useremail("hello")
+user_dao = UserDao()
+print user_dao.select_user_by_useremail("hello")

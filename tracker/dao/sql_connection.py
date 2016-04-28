@@ -1,6 +1,5 @@
-import pymysql
 from tracker import *
-
+import pymysql
 
 class SqlConnection:
     connection = pymysql.connect(host=app.config["DB_HOST"],
@@ -9,3 +8,5 @@ class SqlConnection:
                                  db='api_tracker',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
+
+print "hello test"
