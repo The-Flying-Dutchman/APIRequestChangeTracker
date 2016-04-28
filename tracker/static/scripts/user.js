@@ -1,6 +1,6 @@
 ﻿$(function(){
 ﻿	$.ajax{
-		var user_id = '<%= Session["user_id"] %>';
+		var user_id = document.cookie;
 		url: "/list",
 		data: {"user_id": 1},
 		success: function(data){
