@@ -25,26 +25,25 @@
 		</form>
 		<script type="text/javascript">
 					
-					(function checkLogin(){
-						$.ajax({
-							type: "POST",
-							url: "/login",
-							data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
-							dataType: "json",
-							contentType:"application/json",
-							success: function(data) {
-								if (data.message == "success") {
-									//redriect to user
-
-									'<%Session["user_id"] = "'+data.user_id+'"%>';
-									alert('<%=Session["user_id"] %>');
+			(function checkLogin(){
+				$.ajax({
+					type: "POST",
+					url: "/login",
+					data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
+					dataType: "json",
+					contentType:"application/json",
+					success: function(data) {
+						if (data.message == "success") {
+							//redriect to use
+							'<%Session["user_id"] = "'+data.user_id+'"%>';
+							alert('<%=Session["user_id"] %>');
 									// user_id = data.user_id
-									window.open("user.html");
-								} else {
-								}
-							}
-							})	
-						});	
+								window.open("user.html");
+						} else {
+						}
+					}
+					})	
+			});	
 
 		</script>
 	</div>
@@ -62,29 +61,29 @@
 			<button onclick="submitForm()" id="myButton" class="buttonDesign" >SUBMIT</button> 
 		</form>
 		<script type="text/javascript">
-					(function submitForm(){
-						if($("#pass").val() == $("#ver").val()){
-						$.ajax({
-							type: "POST",
-							url: "/register",
-							data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
-							dataType: "json",
-							contentType:"application/json"
-							success: function(data) {
-								if (data.message == "success") {
-										//redriect to user
+		(function submitForm(){
+			if($("#pass").val() == $("#ver").val()){
+			$.ajax({
+				type: "POST",
+				url: "/register",
+				data: {"user_email": $("#email").val(), "user_password": $("#pass").val()},
+				dataType: "json",
+				contentType:"application/json"
+				success: function(data) {
+					if (data.message == "success") {
+							//redriect to user
 
-									'<%Session["user_id"] = "'+data.user_id+'"%>';
-									alert('<%=Session["user_id"] %>');
-									// user_id = data.user_id
-									window.open("user.html");
-								} else {
-									//user info wrong
-								}
-							}
-							})	
-						}
-						});	
+						'<%Session["user_id"] = "'+data.user_id+'"%>';
+						alert('<%=Session["user_id"] %>');
+						// user_id = data.user_id
+						window.open("user.html");
+					} else {
+						//user info wrong
+					}
+				}
+				})	
+			}
+			});	
 		</script>
 	</div>
 </div>
