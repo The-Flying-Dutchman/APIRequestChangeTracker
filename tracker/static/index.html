@@ -18,7 +18,7 @@
 	</div>
 	<!-- used for global variable -->
 	<div class="content">
-		<form id = "myForm" action="/login"> <!-- placeholder value for Wei Li's API -->
+		<form id = "myForm" action="/login" method = "post"> <!-- placeholder value for Wei Li's API -->
 			<input type="text" id="email" placeholder=" Email" />
 			<input type="password" name="password" placeholder=" Password" />
 			<button onclick="checkLogin()" id="myButton" class="buttonDesign">LOGIN</button>
@@ -29,17 +29,17 @@
 							global.localStorage.setItem("mySharedData", document.getElementById("printEmail").value);
 						}, false);
 					}(window));
-					
+
 					(function checkLogin(){
 						$.ajax({
-							type: "POST",
+							type: "post",
 							url: "/login",
 							dataType: "json",
 							contentType:"application/json"
-							})	
-						});	
+							})
+						});
 
-								
+
 		</script>
 	</div>
 </div>
@@ -49,7 +49,7 @@
 		<p class="register-tag">REGISTER</p>
 	</div>
 	<div class="content">
-		<form id="myForm2" action="{{ url_for('register') }}"><!--PLACEHOLDER-->
+		<form id="myForm2" action="/register" method ="post"><!--PLACEHOLDER-->
 			<input type="text" name="email" placeholder="Email"/>
 			<input type="password" name="password" placeholder=" Password" />
 			<input type="password" name="verify" placeholder=" Password Verification" />
@@ -58,7 +58,7 @@
 		<script type="text/javascript">
 					(function submitForm(){
 						$.ajax({
-							type: "POST",
+							type: "post",
 							url: "/register",
 							dataType: "json",
 							contentType:"application/json"

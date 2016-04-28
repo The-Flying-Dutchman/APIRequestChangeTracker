@@ -10,12 +10,12 @@ class LoginModel:
     def create_user(self, email, password):
         user = self.user_dao.select_user_by_useremail(email)
         if user:
-            return False
+            return None
         else:
             user = User(email, password)
             user.password = bcrypt.hashpw(password, bcrypt.gensalt())
-            self.user_dao.insert_user(user.as_dictionary())
-            return True
+            user_id = self.user_dao.insert_user(user.as_dictionary())
+            return user_id
 
     def login(self, email, password):
         user = self.user_dao.select_user_by_useremail(email)
@@ -28,4 +28,8 @@ class LoginModel:
         user = self.user_dao.select_user_by_useremail(email)
         if not user:
             return None
-        return User(user["user_email"], user["user_password"])
+
+        user_entity = User(user["user_email"], user["user_password"])
+        user_entity.user_id = user["user_id"]
+        user_entity.id = user["user_email"]
+        return user_entity
