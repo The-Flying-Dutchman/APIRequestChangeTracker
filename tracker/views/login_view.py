@@ -10,7 +10,7 @@ login_manager.init_app(app)
 login_model = LoginModel()
 
 
-@app.route("/create", methods=['GET', 'POST'])
+@app.route("/register", methods=['GET', 'POST'])
 def create_user():
     if request.method == 'GET':
         return '''

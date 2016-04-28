@@ -1,7 +1,7 @@
-from sql_connection import SqlConnection
+from tracker.dao.sql_connection import SqlConnection
 import pymysql.cursors
 
-class Request:
+class Crawler:
     def __init__(self):
         self.connection = SqlConnection.connection
         
@@ -9,5 +9,5 @@ class Request:
         return "test"
     
 
-request = Request()
-print request.perform_requests()
+crawler = Crawler()
+print crawler.perform_requests()
