@@ -29,7 +29,7 @@
 							global.localStorage.setItem("mySharedData", document.getElementById("printEmail").value);
 						}, false);
 					}(window));
-					
+
 					(function checkLogin(){
 						$.ajax({
 							type: "post",
@@ -43,8 +43,6 @@
 							}
 						});
 					});	
-
-								
 		</script>
 	</div>
 </div>
@@ -54,7 +52,7 @@
 		<p class="register-tag">REGISTER</p>
 	</div>
 	<div class="content">
-		<form id="myForm2" action="{{ url_for('register') }}"><!--PLACEHOLDER-->
+		<form id="myForm2" action="/register" method ="post"><!--PLACEHOLDER-->
 			<input type="text" name="email" placeholder="Email"/>
 			<input type="password" name="password" placeholder=" Password" />
 			<input type="password" name="verify" placeholder=" Password Verification" />
@@ -63,7 +61,7 @@
 		<script type="text/javascript">
 					(function submitForm(){
 						$.ajax({
-							type: "POST",
+							type: "post",
 							url: "/register",
 							dataType: "json",
 							contentType:"application/json"

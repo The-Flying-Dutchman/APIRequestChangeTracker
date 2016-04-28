@@ -10,46 +10,32 @@ login_manager.init_app(app)
 login_model = LoginModel()
 
 
-@app.route("/register", methods=['GET', 'POST'])
+@app.route("/register", methods=['POST'])
 def create_user():
-    if request.method == 'GET':
-        return '''
-               <form action='create' method='POST'>
-                <input type='text' name='email' id='email' placeholder='email'></input>
-                <input type='password' name='password' id='password' placeholder='password'></input>
-                <input type='submit' name='submit'></input>
-               </form>
-               '''
     email = request.form['email'].encode("utf-8")
     password = request.form['password'].encode("utf-8")
 
-    if login_model.create_user(email, password):
+    user_id = login_model.create_user(email, password)
+    if user_id:
         user = login_model.get_user_info(email)
         user.id = email
+        user.user_id = user_id
+
         flask_login.login_user(user)
-        return redirect(url_for('protected'))
+        return redirect(url_for('list', user_id = user_id))
     else:
         return make_response('{"error":"Email already exists in the system"}', 409)
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return '''
-               <form action='login' method='POST'>
-                <input type='text' name='email' id='email' placeholder='email'></input>
-                <input type='password' name='password' id='password' placeholder='password'></input>
-                <input type='submit' name='submit'></input>
-               </form>
-               '''
     email = request.form['email'].encode("utf-8")
     password = request.form['password'].encode("utf-8")
 
     if login_model.login(email, password):
         user = login_model.get_user_info(email)
-        user.id = email
         flask_login.login_user(user)
-        return redirect(url_for('protected'))
+        return redirect(url_for('list', user_id=user.user_id))
 
     return make_response('{"error":"Email and password doesn\'t match"}', 409)
 
