@@ -1,6 +1,8 @@
 from tracker import *
+from flask import render_template
 
 
 @app.route('/')
 def index():
-    return "This is a welcome page!"
+    print "index"
+    return render_template('/index.html')
