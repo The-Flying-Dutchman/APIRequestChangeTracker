@@ -1,7 +1,6 @@
 from sql_connection import SqlConnection
 import pymysql.cursors
 
-
 class UserDao:
     def __init__(self):
         self.connection = SqlConnection.connection
