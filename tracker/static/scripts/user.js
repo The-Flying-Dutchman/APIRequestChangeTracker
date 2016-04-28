@@ -1,7 +1,7 @@
 ﻿$(function(){
 	//==========================Model==========================
 	var Model = (function() {
-		var URL = "http://localhost:8080/jQuery_MVC/test.json";
+		var URL = "http://localhost:8080/jQuery_MVC/test-user.json";
 		return {
 			getRequests : function() {
 				return $.ajax({
