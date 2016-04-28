@@ -1,15 +1,14 @@
 from tracker import *
 import flask.ext.login as flask_login
 from flask import request, make_response, url_for, redirect
-from tracker.models.user import User
 from tracker.models.login_model import LoginModel
-import json
 import bcrypt
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
 login_model = LoginModel()
+
 
 @app.route("/create", methods=['GET', 'POST'])
 def create_user():
@@ -32,6 +31,7 @@ def create_user():
     else:
         return make_response('{"error":"Email already exists in the system"}', 409)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -53,15 +53,18 @@ def login():
 
     return make_response('{"error":"Email and password doesn\'t match"}', 409)
 
+
 @app.route('/protected')
 @flask_login.login_required
 def protected():
     return 'Logged in as: ' + flask_login.current_user.id
 
+
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
     return redirect(url_for('/'))
+
 
 @login_manager.user_loader
 def user_loader(email):
@@ -70,6 +73,7 @@ def user_loader(email):
         return
 
     return user
+
 
 @login_manager.request_loader
 def request_loader(request):

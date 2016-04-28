@@ -1,5 +1,5 @@
 from tracker.dao import UserDao
-from tracker.models import User
+from tracker.dao import User
 import bcrypt
 
 

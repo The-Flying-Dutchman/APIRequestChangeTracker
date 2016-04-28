@@ -1,7 +1,7 @@
 import flask.ext.login as flask_login
 
-class User(flask_login.UserMixin):
 
+class User(flask_login.UserMixin):
     def __init__(self, email, password):
         self.email = email
         self.password = password
