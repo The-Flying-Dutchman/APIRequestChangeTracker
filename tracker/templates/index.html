@@ -18,7 +18,7 @@
 	</div>
 	<!-- used for global variable -->
 	<div class="content">
-		<form id = "myForm" action="/login"> <!-- placeholder value for Wei Li's API -->
+		<form id = "loginForm"> <!-- placeholder value for Wei Li's API -->
 			<input type="text" id="email" placeholder=" Email" />
 			<input type="password" name="password" placeholder=" Password" />
 			<button onclick="checkLogin()" id="myButton" class="buttonDesign">LOGIN</button>
@@ -32,12 +32,17 @@
 					
 					(function checkLogin(){
 						$.ajax({
-							type: "POST",
+							type: "post",
 							url: "/login",
+							data:$("#loginForm").serializeArray(),
 							dataType: "json",
-							contentType:"application/json"
-							})	
-						});	
+							contentType:"application/json",
+							success:function(text) {
+								var result = JSON.parse(text);
+								if(result )
+							}
+						});
+					});	
 
 								
 		</script>
