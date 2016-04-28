@@ -1,4 +1,5 @@
 ﻿$(function(){
+<<<<<<< HEAD
 	//Model
 	var Model = (function() {
 		var URL = "http://localhost:8080/jQuery_MVC/test.json";
@@ -60,6 +61,34 @@
 	
 	//Add Click Events (Still works for dynamically created HTML elements)
 	$(document).on("click", ".edit-icon", function(){
+=======
+﻿	$.ajax{
+		var user_id = document.cookie;
+		url: "/list",
+		data: {"user_id": 1},
+		success: function(data){
+			var array = data;
+			for(var i=0; i<=array.length; i++){
+				var content = '<div class="current-request-section">';
+				content += '<p>Request URL:<span>'+array[i]["request_url"]+'</span></p>';
+				content+='<p>Time interval:<span>'+array[i]["request_interval"]+'</span></p>';
+				content+='<a class="edit-icon"><img src="images/edit.png" /></a>';
+				content+='<a class="delete-icon"><img src="images/delete.png" /></a></div>';
+				$(".current-request-section-list").append(content);
+			}
+		}, error: function(error) {
+			console.log("error");
+		}
+	}
+	setTimeout(function(){
+		$('.logo').addClass("zoom");
+	},4000);
+	setTimeout(function(){
+		$('.current-request-section').addClass("bounceInFromBottom");
+		$('.current-request-section').show();
+	},2500);
+	$(".edit-icon").click(function(){
+>>>>>>> 37165790d21db6de83ba78aa40fe0a635d47fb40
 		var parent = $(this).parent();
 		var original_url = parent.children("p:nth-of-type(1)").children("span").text();
 		var original_time_interval = parent.children("p:nth-of-type(2)").children("span").text();
@@ -83,6 +112,7 @@
 			parent.siblings(".display").addClass("flipIn");
 		},500);
 	});
+<<<<<<< HEAD
 	
 	//Animation
 	setTimeout(function(){
@@ -98,3 +128,6 @@
 		Controller.loadAndDisplayRequests();
     });
 });
+=======
+});
+>>>>>>> 37165790d21db6de83ba78aa40fe0a635d47fb40
