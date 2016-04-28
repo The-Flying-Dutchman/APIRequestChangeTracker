@@ -370,7 +370,7 @@ body{
 	<textarea id="input"></textarea> 
 	<!-- used for global variable -->
 	<div class="content">
-		<form id = "myForm" action="/login.py"> <!-- placeholder value for Wei Li's API -->
+		<form id = "myForm" action="/login"> <!-- placeholder value for Wei Li's API -->
 			Email: <input type="text" name="email" placeholder=" Email" />
 			Password: <input type="password" name="password" placeholder=" Password" />
 			<button onclick="checkLogin()" id="myButton" class="buttonDesign">LOGIN</button>
@@ -385,7 +385,7 @@ body{
 					(function checkLogin(){
 						$.ajax({
 							type: "POST",
-							url: "/login.py"
+							url: "/login"
 							dataType: "json",
 							contentType:"application/json"
 							})	
@@ -401,7 +401,7 @@ body{
 		<p class="register-tag">REGISTER</p>
 	</div>
 	<div class="content">
-		<form id="myForm2" action="/register.py"><!--PLACEHOLDER-->
+		<form id="myForm2" action="/register"><!--PLACEHOLDER-->
 			<input type="text" name="email" placeholder="Email"/>
 			<input type="password" name="password" placeholder=" Password" />
 			<input type="password" name="verify" placeholder=" Password Verification" />
@@ -411,7 +411,7 @@ body{
 					(function submitForm(){
 						$.ajax({
 							type: "POST",
-							url: "/register.py"
+							url: "/register"
 							dataType: "json",
 							contentType:"application/json"
 							})

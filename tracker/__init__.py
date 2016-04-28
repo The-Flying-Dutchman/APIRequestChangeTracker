@@ -1,5 +1,4 @@
 from flask import Flask
-import flask.ext.login as flask_login
 
 app = Flask(__name__, instance_relative_config=True)
 
