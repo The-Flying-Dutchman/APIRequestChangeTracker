@@ -16,7 +16,7 @@ class RequestRecordDao:
             cursor.execute(sql, (
             request_record["user_id"], request_record["request_url"], request_record["request_interval"]))
             self.connection.commit()
-            return connection.insert_id()
+            return self.connection.insert_id()
 
     def select_request_record_by_requestid(self, request_id):
         with self.connection.cursor() as cursor:

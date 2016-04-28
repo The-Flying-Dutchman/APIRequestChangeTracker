@@ -14,7 +14,7 @@ class RequestDataDao:
             sql = "INSERT INTO request_data (data_request_id, data_content) VALUES (%s, %s)"
             cursor.execute(sql, (requestdata["data_request_id"], requestdata["data_content"]))
             self.connection.commit()
-            return connection.insert_id()
+            return self.connection.insert_id()
 
     def delete_request_data(self, requestdataid):
         if requestdataid:
