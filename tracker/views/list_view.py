@@ -8,7 +8,7 @@ list_model = ListModel()
 
 @app.route('/list', methods=['GET'])
 def list():
-    user_id = request.args.get("user_id", '')
+    user_id = request.args.get("user_id", '').encode("utf-8")
 
     all_records = list_model.list_all_records(user_id)
     return make_response(json.dumps(all_records))

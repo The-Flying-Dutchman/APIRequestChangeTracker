@@ -33,7 +33,7 @@ class UserDao:
             sql = "INSERT INTO users (user_email, user_password) VALUES (%s, %s)"
             cursor.execute(sql, (user["email"], user["password"]))
             self.connection.commit()
-            return self.connection.insert_id()
+            return cursor.lastrowid
 
     def update_user(self, user):
         if not user or not user.get("user_id"):

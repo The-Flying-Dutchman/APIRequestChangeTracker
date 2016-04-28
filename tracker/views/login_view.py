@@ -16,7 +16,7 @@ def create_user():
     password = request.form['password'].encode("utf-8")
 
     user_id = login_model.create_user(email, password)
-    if user_id:
+    if user_id > 0:
         user = login_model.get_user_info(email)
         user.id = email
         user.user_id = user_id
