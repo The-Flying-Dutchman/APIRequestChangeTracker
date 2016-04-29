@@ -134,3 +134,20 @@
 		Controller.loadAndDisplayRequests();
     });
 });
+
+//submitRequest to be added
+submitRequest : function() {
+		return $.ajax({
+			type : "POST",
+			url : "/new_request",
+			data: $("#submitForm").serialize(),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(text) {
+				console.log(text)
+			},
+			error: function(textStatus, errorThrown){
+				alert("Submiting data error!");
+			}
+			});
+		}

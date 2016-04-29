@@ -17,13 +17,13 @@
 			<p>CREATE NEW REQUEST</p>
 		</div>
 		<div class="content">
-			<form>
+			<form id="submitForm" action="/new_request" method="post">
 				<p>
                     {% if current_user.is_authenticated %}
                       Hi {{ current_user.id }}!
 
                     {% endif %}
-					 <input type="button" value="LOGOUT" />
+					 <input type="button" value="LOGOUT" onclick="window.open("user.html");" />
 				</p>
 				<input type="text" placeholder=" Request URL" /> <input type="text"
 					placeholder=" Time interval" /> <input type="button"
@@ -57,6 +57,7 @@
 	</div>
 </body>
 <script type="text/template" id="request-template">
+<a style="display:block"  href="changes.html">
       <div class="current-request-section">
 		<div class="display">
 			<p>Request URL:<span>${requestURL}</span></p>
@@ -74,6 +75,7 @@
 			<a class="cancel-icon"><img src="../static/images/cancel.png" /></a>
 		</div>
 	</div>
+</a>
 </script>
 </html>
 
