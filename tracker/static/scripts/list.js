@@ -9,6 +9,7 @@
 					url : "/get_requests_data",
 					//url : "http://localhost:8080/jQuery_MVC/test-user.json",
 					data: "user_id=" + user_id,
+					//data : {"user_id": user_id},
 					dataType : "json",
 					contentType : "application/json"
 				});
@@ -21,17 +22,35 @@
         			//url : "http://localhost:8080/jQuery_MVC/test-user.json",
         			data: $("#"+formId).serialize()
         		});
-			}
+			},
+			
+
+			deleteRequests : function(requestId) {
+				return $.ajax({
+					type : "DELETE",
+					url : "/delete_request",
+					//url : "http://localhost:8080/jQuery_MVC/test-user.json",
+					data : {"request_id": requestId}
+				});
+			},
+			
+			addRequests : function(){
+				return $.ajax({
+        			type: "PUT",
+        			url: "/new_request",
+        			//url : "http://localhost:8080/jQuery_MVC/test-user.json",
+        			data: $("#newRequestForm").serialize()
+        		});
+			},
 		};
 	}());
 
-	//==========================View==========================
+	// ==========================View==========================
 	var View = (function() {
 		var template = $("#request-template").html();
 
 		var applyTemplate = function(template, data) {
-			console.log("hahaha")
-			console.log(data)
+			console.log(data);
 			return template
 				.replace(/\${requestURL}/g, data.request_url)
 				.replace(/\${timeInterval}/g, data.request_interval)
@@ -48,6 +67,12 @@
 			displayRequests : function(results){
 				var rendering = renderRequests(results);
 				$(".current-request-section-list").html(rendering);
+			},
+		
+			addRequests : function(results){
+				var rendering = renderRequests(results);
+				rendering = rendering.replace("bounceInFromBottom", "");
+				$(".current-request-section-list").prepend(rendering);
 			}
 		};
 	}());
@@ -77,6 +102,33 @@
 				requests.error(function(textStatus, errorThrown) {
 					alert("Update data error!");
 				});
+			},
+			
+			deleteRequests : function(requestId){
+				var requests = Model.deleteRequests(requestId);//Update data in the database
+				requests.success(function(results) {
+					$("#delete-icon-id-"+requestId).parent().parent().fadeOut();
+				});
+				requests.error(function(textStatus, errorThrown) {
+					alert("Delete data error!");
+				});
+			},
+			
+			addRequests : function(){
+				var requests = Model.addRequests();//Update data in the database
+				requests.success(function(results) {
+					//Update data on the website
+					var idObj = jQuery.parseJSON(results);
+					var newRequestUrl = $("#newRequestUrl").val();
+					var newRequestInterval = $("#newRequestInterval").val();
+					$("#newRequestUrl").val("");
+					$("#newRequestInterval").val("");
+					var newRequestJson = '[{ "request_id": "'+idObj.request_id+'", "request_url": "'+newRequestUrl+'", "request_interval": "'+newRequestInterval+'"}]'
+					View.addRequests($.parseJSON(newRequestJson));   //Display
+				});
+				requests.error(function(textStatus, errorThrown) {
+					alert("Add data error!");
+				});
 			}
 		};
 	}());
@@ -97,6 +149,9 @@
 			parent.siblings(".edit").show();
 			parent.siblings(".edit").addClass("flipIn");
 		},500);
+	});
+	$(document).on("click", ".delete-icon", function(){
+		Controller.deleteRequests($(this).attr("requestId"));
 	});
 	$(document).on("click", ".cancel-icon",function(){
 		var parent = $(this).parent();
@@ -120,6 +175,10 @@
 		},500);
 	});
 	
+	$(document).on("click", ".submit-button",function(){
+		Controller.addRequests();
+	});
+	
 	//Animation
 	setTimeout(function(){
 		$('.logo').addClass("zoom");
@@ -134,20 +193,3 @@
 		Controller.loadAndDisplayRequests();
     });
 });
-
-//submitRequest to be added
-submitRequest : function() {
-		return $.ajax({
-			type : "POST",
-			url : "/new_request",
-			data: $("#submitForm").serialize(),
-			dataType : "json",
-			contentType : "application/json",
-			success : function(text) {
-				console.log(text)
-			},
-			error: function(textStatus, errorThrown){
-				alert("Submiting data error!");
-			}
-			});
-		}
