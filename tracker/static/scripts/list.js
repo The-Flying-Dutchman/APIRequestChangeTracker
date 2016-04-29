@@ -101,3 +101,21 @@
 		Controller.loadAndDisplayRequests();
     });
 });
+
+//submitRequest to be added
+getRequests : function() {
+		user_id = $('#user_id').val()
+		return $.ajax({
+			type : "POST",
+			url : "/new_request",
+			data: $("#submitForm").serialize(),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(text) {
+				console.log(text)
+			},
+			error: function(textStatus, errorThrown){
+				alert("Submiting data error!");
+			}
+			});
+		}
