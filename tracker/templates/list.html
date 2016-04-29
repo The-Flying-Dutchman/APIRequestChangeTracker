@@ -67,7 +67,7 @@
 			function edit(){
 				 $.ajax({
                 			type: "POST",
-                			url: "/register",
+                			url: "/update_request",
                 			data: $("#editForm").serialize(),
                 			success: function (data) {
                     				if (data.message == "success") {
@@ -83,7 +83,7 @@
 			function delete(){
 				$.ajax({
 					type: "DELETE",
-					url: "/",
+					url: "/delete_request",
 					data: "value"
 					success: function(data){
 						if (data.message == "success") {
@@ -97,7 +97,7 @@
 			</script>
 		</div>
 		<div class="edit">
-			<form id="editForm" action="/register" method="post">
+			<form id="editForm" action="/update_request" method="post">
 				<input type="text" placeholder=" Request URL" />
 				<input type="text" placeholder=" Time interval" />
 			</form>
