@@ -61,11 +61,43 @@
 		<div class="display">
 			<p>Request URL:<span>${requestURL}</span></p>
 			<p>Time interval&nbsp;:<span>${timeInterval}</span></p>
-			<a class="edit-icon"><img src="../static/images/edit.png" /></a>
-			<a class="delete-icon"><img src="../static/images/delete.png" /></a>
+			<a class="edit-icon"><a href = "JavaScript:edit()>"<img src="../static/images/edit.png" /></a></a>
+			<a class="delete-icon"><a href = "JavaScript:delete()"><img src="../static/images/delete.png" /></a></a>
+			<script>
+			function edit(){
+				 $.ajax({
+                			type: "POST",
+                			url: "/register",
+                			data: $("#editForm").serialize(),
+                			success: function (data) {
+                    				if (data.message == "success") {
+                       				//action if successful edit
+                				 } else {
+                				 //user info wrong
+                				 }
+                			},
+                			error: function (data) {
+        				}
+        			})
+			}
+			function delete(){
+				$.ajax({
+					type: "DELETE",
+					url: "/",
+					data: "value"
+					success: function(data){
+						if (data.message == "success") {
+							console.log("Request deleted!");
+                				 } else {
+                				 //user info wrong
+                				 }	
+					}
+				});
+			}
+			</script>
 		</div>
 		<div class="edit">
-			<form>
+			<form id="editForm" action="/register" method="post">
 				<input type="text" placeholder=" Request URL" />
 				<input type="text" placeholder=" Time interval" />
 			</form>
