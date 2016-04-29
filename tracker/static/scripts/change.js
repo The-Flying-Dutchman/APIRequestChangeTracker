@@ -2,19 +2,16 @@ $(function(){
 		//==========================Model==========================
 		var Model = (function() {
 			var URL = "http://localhost:8080/jQuery_MVC/test-change.json";
+			var currentPageURL=$(location).attr('href');
+			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('?request_id=')+12);
 			return {
 				getChanges : function() {
 					return $.ajax({
 						type : "GET",
 						url : URL,
+						data: '{"request_id": "'+requestId+'"}',
 						dataType : "json",
 						contentType : "application/json",
-						success : function(text) {
-							
-						},
-						error: function(textStatus, errorThrown){
-							alert("Loading data error!");
-						}
 					});
 				}
 			};
@@ -49,8 +46,11 @@ $(function(){
 			return {
 				loadAndDisplayChanges : function() {
 					var changes = Model.getChanges();//Load
-					changes.done(function(results) {
+					changes.success(function(results) {
 						View.displayChanges(results);   //Display
+					});
+					changes.error(function(textStatus, errorThrown) {
+						alert("Loading data error!");
 					});
 				}
 			};

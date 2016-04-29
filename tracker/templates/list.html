@@ -3,7 +3,7 @@
 <head>
 <script src="../static/scripts/jquery-2.2.1.min.js"></script>
 <script src="../static/scripts/list.js"></script>
-<link rel="stylesheet" type="text/css" href="../static/css/user.css">
+<link rel="stylesheet" type="text/css" href="../static/css/list.css">
 </head>
 <body>
 
@@ -36,7 +36,7 @@
 </body>
 <script type="text/template" id="request-template">
       <div class="current-request-section bounceInFromBottom">
-		<div class="display">
+		<div class="display" onclick="javascript: location.href='../static/change.html?request_id=${requestId}'">
 			<p>Request URL:<span>${requestURL}</span></p>
 			<p>Time interval&nbsp;:<span>${timeInterval}</span></p>
 			<a class="edit-icon"><img src="../static/images/edit.png" /></a>
