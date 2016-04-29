@@ -4,6 +4,9 @@ from tracker.dao import RequestRecord
 from tracker.dao import RequestData
 import requests
 
+import json
+from datetime import datetime
+
 
 class ListModel:
     def __init__(self):
@@ -28,8 +31,11 @@ class ListModel:
         except:
             return False
 
+
     def list_all_records(self, user_id):
         try:
-            return self.request_record_dao.select_request_record_by_userid(user_id)
+            results = self.request_record_dao.select_request_record_by_userid(user_id)
+            return results
+
         except:
             return None

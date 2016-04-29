@@ -1,16 +1,17 @@
 ﻿$(function(){
 	//==========================Model==========================
 	var Model = (function() {
-		var URL = "http://localhost:8080/jQuery_MVC/test.json";
 		return {
 			getRequests : function() {
+				user_id = $('#user_id').val()
 				return $.ajax({
 					type : "GET",
-					url : URL,
+					url : "/get_requests_data",
+					data: "user_id=" + user_id,
 					dataType : "json",
 					contentType : "application/json",
 					success : function(text) {
-						
+						console.log(text)
 					},
 					error: function(textStatus, errorThrown){
 						alert("Loading data error!");
@@ -25,9 +26,11 @@
 		var template = $("#request-template").html();
 
 		var applyTemplate = function(template, data) {
+			console.log("hahaha")
+			console.log(data)
 			return template
-				.replace(/\${requestURL}/g, data.URL)
-				.replace(/\${timeInterval}/g, data.Time);
+				.replace(/\${requestURL}/g, data.request_url)
+				.replace(/\${timeInterval}/g, data.request_interval);
 		};
 
 		var renderRequests = function(results) {

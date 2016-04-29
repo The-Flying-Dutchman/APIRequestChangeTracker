@@ -19,7 +19,7 @@ class LoginModel:
 
     def login(self, email, password):
         user = self.user_dao.select_user_by_useremail(email)
-        if (bcrypt.hashpw(password, user["user_password"]) == user["user_password"]):
+        if (bcrypt.hashpw(password, user["user_password"].encode('utf-8')) == user["user_password"].encode('utf-8')):
             return True
         else:
             return False

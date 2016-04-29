@@ -8,5 +8,3 @@ class SqlConnection:
                                  db='api_tracker',
                                  charset='utf8mb4',
                                  cursorclass=pymysql.cursors.DictCursor)
-
-print "hello test"

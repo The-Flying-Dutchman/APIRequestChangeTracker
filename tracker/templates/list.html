@@ -1,13 +1,16 @@
 ﻿<!DOCTYPE>
 <html>
 <head>
-<script src="scripts/jquery-2.2.1.min.js"></script>
-<script src="scripts/user.js"></script>
-<link rel="stylesheet" type="text/css" href="css/user.css">
+<script src="static/scripts/jquery-2.2.1.min.js"></script>
+<script src="static/scripts/list.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/user.css">
 </head>
 <body>
+
+    <input type="hidden" id="user_id" value="{{ current_user.user_id }}">
+
 	<div class="logo fadeIn">
-		<image src="images/logo2.png" />
+		<image src="static/images/logo2.png" />
 	</div>
 	<div class="new-request-section bounceInFromTop">
 		<div class="tag">
@@ -16,7 +19,11 @@
 		<div class="content">
 			<form>
 				<p>
-					Email: 1234567@gmail.com <input type="button" value="LOGOUT" />
+                    {% if current_user.is_authenticated %}
+                      Hi {{ current_user.id }}!
+
+                    {% endif %}
+					 <input type="button" value="LOGOUT" />
 				</p>
 				<input type="text" placeholder=" Request URL" /> <input type="text"
 					placeholder=" Time interval" /> <input type="button"
@@ -33,16 +40,16 @@
 				<p>
 					Time interval:<span>12h</span>
 				</p>
-				<a class="edit-icon"><img src="images/edit.png" /></a> <a
-					class="delete-icon"><img src="images/delete.png" /></a>
+				<a class="edit-icon"><img src="static/images/edit.png" /></a> <a
+					class="delete-icon"><img src="static/images/delete.png" /></a>
 			</div>
 			<div class="edit">
 				<form>
 					<input type="text" placeholder=" Request URL" /> <input
 						type="text" placeholder=" Time interval" />
 				</form>
-				<a class="confirm-icon"><img src="images/confirm.png" /></a> <a
-					class="cancel-icon"><img src="images/cancel.png" /></a>
+				<a class="confirm-icon"><img src="static/images/confirm.png" /></a> <a
+					class="cancel-icon"><img src="static/images/cancel.png" /></a>
 			</div>
 		</div>
 	</div>
@@ -52,16 +59,16 @@
 		<div class="display">
 			<p>Request URL:<span>${requestURL}</span></p>
 			<p>Time interval&nbsp;:<span>${timeInterval}</span></p>
-			<a class="edit-icon"><img src="images/edit.png" /></a>
-			<a class="delete-icon"><img src="images/delete.png" /></a>
+			<a class="edit-icon"><img src="static/images/edit.png" /></a>
+			<a class="delete-icon"><img src="static/images/delete.png" /></a>
 		</div>
 		<div class="edit">
 			<form>
 				<input type="text" placeholder=" Request URL" />
 				<input type="text" placeholder=" Time interval" />
 			</form>
-			<a class="confirm-icon"><img src="images/confirm.png" /></a>
-			<a class="cancel-icon"><img src="images/cancel.png" /></a>
+			<a class="confirm-icon"><img src="static/images/confirm.png" /></a>
+			<a class="cancel-icon"><img src="static/images/cancel.png" /></a>
 		</div>
 	</div>
 </script>

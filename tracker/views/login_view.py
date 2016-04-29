@@ -22,7 +22,7 @@ def create_user():
         user.user_id = user_id
 
         flask_login.login_user(user)
-        return redirect(url_for('list', user_id = user_id))
+        return redirect(url_for('list'))
     else:
         return make_response('{"error":"Email already exists in the system"}', 409)
 
@@ -35,7 +35,7 @@ def login():
     if login_model.login(email, password):
         user = login_model.get_user_info(email)
         flask_login.login_user(user)
-        return redirect(url_for('list', user_id=user.user_id))
+        return redirect(url_for('list'))
 
     return make_response('{"error":"Email and password doesn\'t match"}', 409)
 
@@ -59,7 +59,6 @@ def user_loader(email):
         return
 
     return user
-
 
 @login_manager.request_loader
 def request_loader(request):

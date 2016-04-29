@@ -55,5 +55,3 @@ class UserDao:
         else:
             return "Please pass in user id"
 
-user_dao = UserDao()
-print user_dao.select_user_by_useremail("hello")
