@@ -103,7 +103,7 @@
 });
 
 //submitRequest to be added
-getRequests : function() {
+submitRequest : function() {
 		return $.ajax({
 			type : "POST",
 			url : "/new_request",
