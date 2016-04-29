@@ -104,7 +104,6 @@
 
 //submitRequest to be added
 getRequests : function() {
-		user_id = $('#user_id').val()
 		return $.ajax({
 			type : "POST",
 			url : "/new_request",
