@@ -1,4 +1,4 @@
-﻿<!DOCTYPE>
+<!DOCTYPE>
 <html>
 <head>
 <script src="../static/scripts/jquery-2.2.1.min.js"></script>
@@ -61,17 +61,55 @@
 		<div class="display">
 			<p>Request URL:<span>${requestURL}</span></p>
 			<p>Time interval&nbsp;:<span>${timeInterval}</span></p>
-			<a class="edit-icon"><a href = "JavaScript:edit()><img src="../static/images/edit.png" /></a></a>
-			<a class="delete-icon"><a href = "JavaScript:delete()"><img src="../static/images/delete.png" /></a></a>
+			<a class="edit-icon"><img src="../static/images/edit.png" /></a>
+			<a class="delete-icon"><img src="../static/images/delete.png" /></a>
 		</div>
 		<div class="edit">
-			<form id="editForm" action="/update_request" method="post">
-				<input type="text" placeholder=" Request URL" />
-				<input type="text" placeholder=" Time interval" />
+			<form id="form-${requestId}">
+				<input type="text" name="request_url" placeholder=" Request URL" />
+				<input type="text" name="request_interval" placeholder=" Time interval" />
+				<input type="hidden" name="request_id" value="${requestId}" />
 			</form>
-			<a class="confirm-icon"><img src="../static/images/confirm.png" /></a>
+			<a class="confirm-icon" formId="form-${requestId}"><img src="../static/images/confirm.png" /></a>
 			<a class="cancel-icon"><img src="../static/images/cancel.png" /></a>
 		</div>
 	</div>
 </script>
 </html>
+
+
+
+
+
+<!-- <script>
+			function edit(){
+				 $.ajax({
+                			type: "POST",
+                			url: "/update_request",
+                			data: $("#editForm").serialize(),
+                			success: function (data) {
+                    				if (data.message == "success") {
+                       				//action if successful edit
+                				 } else {
+                				 //user info wrong
+                				 }
+                			},
+                			error: function (data) {
+        				}
+        			})
+			}
+			function delete(){
+				$.ajax({
+					type: "DELETE",
+					url: "/delete_request",
+					data: "value",
+					success: function(data){
+						if (data.message == "success") {
+							console.log("Request deleted!");
+                				 } else {
+                				 //user info wrong
+                				 }	
+					}
+				});
+			}
+			</script> -->
