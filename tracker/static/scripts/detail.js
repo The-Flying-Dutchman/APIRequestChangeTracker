@@ -1,15 +1,16 @@
 $(function(){
 		//==========================Model==========================
 		var Model = (function() {
-			var URL = "http://localhost:8080/jQuery_MVC/test-change.json";
+			var URL = "/get_request_details";
 			var currentPageURL=$(location).attr('href');
 			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('?request_id=')+12);
+			console.log(requestId)
 			return {
 				getChanges : function() {
 					return $.ajax({
 						type : "GET",
 						url : URL,
-						data: '{"request_id": "'+requestId+'"}',
+						data: {"request_id": requestId},
 						dataType : "json",
 						contentType : "application/json",
 					});
@@ -23,8 +24,8 @@ $(function(){
 
 			var applyTemplate = function(template, data) {
 				return template
-					.replace(/\${detail}/g, data.Detail)
-					.replace(/\${time}/g, data.Time);
+					.replace(/\${detail}/g, data.data_content)
+					.replace(/\${time}/g, data.data_timestamp);
 			};
 
 			var renderChanges = function(results) {

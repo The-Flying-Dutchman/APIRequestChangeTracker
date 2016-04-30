@@ -12,32 +12,34 @@ login_model = LoginModel()
 
 @app.route("/register", methods=['POST'])
 def create_user():
-    email = request.form['email'].encode("utf-8")
-    password = request.form['password'].encode("utf-8")
+    try:
+        email = request.form['email'].encode("utf-8")
+        password = request.form['password'].encode("utf-8")
 
-    user_id = login_model.create_user(email, password)
-    if user_id > 0:
+        user_id = login_model.create_user(email, password)
         user = login_model.get_user_info(email)
         user.id = email
         user.user_id = user_id
 
         flask_login.login_user(user)
         return redirect(url_for('list'))
-    else:
+    except:
         return make_response('{"error":"Email already exists in the system"}', 409)
 
 
 @app.route('/login', methods=['POST'])
 def login():
-    email = request.form['email'].encode("utf-8")
-    password = request.form['password'].encode("utf-8")
+    try:
+        email = request.form['email'].encode("utf-8")
+        password = request.form['password'].encode("utf-8")
 
-    if login_model.login(email, password):
-        user = login_model.get_user_info(email)
-        flask_login.login_user(user)
-        return redirect(url_for('list'))
+        if login_model.login(email, password):
+            user = login_model.get_user_info(email)
+            flask_login.login_user(user)
+            return redirect(url_for('list'))
+    except:
+        make_response('{"error":"Email and password doesn\'t match"}', 409)
 
-    return make_response('{"error":"Email and password doesn\'t match"}', 409)
 
 
 @app.route('/protected')
@@ -59,6 +61,7 @@ def user_loader(email):
         return
 
     return user
+
 
 @login_manager.request_loader
 def request_loader(request):

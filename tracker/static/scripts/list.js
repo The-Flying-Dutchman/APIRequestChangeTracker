@@ -6,10 +6,10 @@
 				user_id = $('#user_id').val()
 				return $.ajax({
 					type : "GET",
-					//url : "/get_requests_data",
-					url : "http://localhost:8080/jQuery_MVC/test-user.json",
-					data: "user_id=" + user_id,
-					//data : {"user_id": user_id},
+					url : "/get_request_lists",
+					//url : "http://localhost:8080/jQuery_MVC/test-user.json",
+					//data: "user_id=" + user_id,
+					data : {"user_id": user_id},
 					dataType : "json",
 					contentType : "application/json"
 				});

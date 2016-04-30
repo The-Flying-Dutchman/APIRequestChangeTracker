@@ -6,14 +6,18 @@ class RequestDataDao:
         self.connection = SqlConnection.connection
 
     def insert_request_data(self, requestdata):
-        if not requestdata or not requestdata.get("data_request_id") or not requestdata.get("data_content"):
-            return "Please pass in data"
+        try:
+            if not requestdata or not requestdata.get("data_request_id") or not requestdata.get("data_content"):
+                return "Please pass in data"
 
-        with self.connection.cursor() as cursor:
-            sql = "INSERT INTO request_data (data_request_id, data_content) VALUES (%s, %s)"
-            cursor.execute(sql, (requestdata["data_request_id"], requestdata["data_content"]))
-            self.connection.commit()
-            return self.connection.insert_id()
+            with self.connection.cursor() as cursor:
+                sql = "INSERT INTO request_data (data_request_id, data_content) VALUES (%s, %s)"
+                cursor.execute(sql, (requestdata["data_request_id"], requestdata["data_content"]))
+                self.connection.commit()
+                return cursor.lastrowid
+        except Exception as e:
+            print e
+
 
     def delete_request_data(self, requestdataid):
         if requestdataid:
@@ -44,3 +48,6 @@ class RequestDataDao:
                 return result
         else:
             return "Please pass in request data id"
+
+
+

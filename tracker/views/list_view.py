@@ -8,26 +8,55 @@ from flask import render_template
 list_model = ListModel()
 
 
-
-
 @app.route('/list', methods=['GET'])
 def list():
     return render_template('list.html')
 
-@app.route('/get_requests_data', methods=['GET'])
+
+@app.route('/get_request_lists', methods=['GET'])
 def getRequestData():
-    user_id = request.args.get("user_id", '').encode("utf-8")
+    try:
+        user_id = request.args.get("user_id", '').encode("utf-8")
 
-    all_records = list_model.list_all_records(user_id)
-    return make_response(json.dumps(all_records, cls=DateTimeEncoder))
+        all_records = list_model.list_all_records(user_id)
+        return make_response(json.dumps(all_records, cls=DateTimeEncoder))
+    except:
+        return make_response()
 
-@app.route('/new_track', methods=['POST'])
-def new_track():
-    user_id = request.form('user_id').encode('utf-8')
-    url = request.form['url'].encode('utf-8').encode('utf-8')
-    interval = request.form['interval_hour'].encode('utf-8')
 
-    if list_model.new_track(user_id, url, interval):
-        return redirect(url_for('list'))
-    else:
+@app.route('/new_request', methods=['PUT'])
+def new_request():
+    try:
+        user_id = request.form['user_id'].encode('utf-8')
+        request_url = request.form['request_url'].encode('utf-8').encode('utf-8')
+        request_interval = request.form['request_interval'].encode('utf-8')
+
+        request_id = list_model.new_request(user_id, request_url, request_interval)
+
+        return make_response(json.dumps({"request_id": request_id}), 200)
+    except Exception as e:
+        print e
         return make_response('{"error":"add new request fails"}', 409)
+
+
+@app.route('/update_request', methods=['POST'])
+def update_request():
+    try:
+        request_id = request.form['request_id'].encode('utf-8')
+        request_url = request.form['request_url'].encode('utf-8').encode('utf-8')
+        request_interval = request.form['request_interval'].encode('utf-8')
+        list_model.update_request(request_id, request_url, request_interval)
+
+        make_response('{"success":"update success"}', 200)
+    except Exception as e:
+        print e
+        make_response('{"error":"update fails"}', 409)
+
+
+@app.route('/delete_request', methods=['DELETE'])
+def delete_request():
+    try:
+        request_id = request.args.get("request_id", '').encode("utf-8")
+        list_model.delete_request(request_id)
+    except Exception as e:
+        print e

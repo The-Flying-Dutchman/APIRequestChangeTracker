@@ -1,7 +1,7 @@
 from tracker import *
-from flask import url_for, redirect
+from flask import url_for, redirect, render_template
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
-    return redirect(url_for('static', filename='index.html'))
+    return render_template('index.html')

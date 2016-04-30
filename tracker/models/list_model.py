@@ -13,24 +13,23 @@ class ListModel:
         self.request_record_dao = RequestRecordDao()
         self.request_data_dao = RequestDataDao()
 
-    def get_data_from_url(self, url):
-        resp = requests.get(url)
-        return resp.text()
+    def get_data_from_url(self, request_url):
+        resp = requests.get(request_url)
+        return resp.text
 
-    def new_track(self, user_id, url, interval):
+    def new_request(self, user_id, request_url, request_interval):
         try:
-            request_record = RequestRecord(user_id, url, interval)
+            request_record = RequestRecord(user_id, request_url, request_interval)
             request_id = self.request_record_dao.insert_request_record(request_record.as_dictionary())
 
-            data_content = self.get_data_from_url(url)
+            data_content = self.get_data_from_url(request_url)
 
             request_data = RequestData(request_id, data_content)
             self.request_data_dao.insert_request_data(request_data.as_dictionary())
 
-            return True
+            return request_id
         except:
-            return False
-
+            return 0
 
     def list_all_records(self, user_id):
         try:
@@ -39,3 +38,23 @@ class ListModel:
 
         except:
             return None
+
+    def update_request(self, request_id, request_url, request_interval):
+        try:
+
+            request_record = {"request_id": request_id, "request_url": request_url,
+                              "request_interval": request_interval}
+
+            return True if self.request_record_dao.update_request(request_record) else False
+
+        except:
+            return False
+
+
+    def delete_request(self, request_id):
+        try:
+            self.request_record_dao.delete_request_by_requestid(request_id)
+            self.request_data_dao.select_request_data_by_requestid(request_id)
+            return True
+        except:
+            return False
