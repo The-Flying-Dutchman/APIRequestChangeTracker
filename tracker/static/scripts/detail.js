@@ -1,7 +1,8 @@
 $(function(){
 		//==========================Model==========================
 		var Model = (function() {
-			var URL = "/get_request_details";
+			//var URL = "/get_request_details";
+			var URL = "http://localhost:8080/jQuery_MVC/test-change.json";
 			var currentPageURL=$(location).attr('href');
 			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('/detail?') + 8);
 			return {
@@ -23,6 +24,7 @@ $(function(){
 
 			var applyTemplate = function(template, data) {
 				return template
+					.replace(/\${data_request_id}/g, data.data_request_id)
 					.replace(/\${detail}/g, data.data_content)
 					.replace(/\${time}/g, data.data_timestamp);
 			};

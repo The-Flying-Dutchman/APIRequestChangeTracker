@@ -43,7 +43,7 @@ body{
 	float:left;
 	width:25%;
 }
-.container>.content>div{
+.container>.content>p{
     width:96%;
     height:10%;
     position: relative;
@@ -53,14 +53,43 @@ body{
     border-radius: 5px;
     border: 1px black solid;
     text-align: left;
+    word-wrap:break-word; 
+    word-break:normal; 
+    text-align: center;
+    overflow: hidden;
 }
-.container>.content>div>p:nth-of-type(1){
-	float:left;
+.container>.content>p:target{
+    width:96%;
+    height:60%;
+    position: relative;
+    margin: 0 auto;
+    padding: 0.6em 1em;
+    background: rgba(255,255,255,0.8);
+    border-radius: 5px;
+    border: 1px black solid;
+    text-align: left;
+    word-wrap:break-word; 
+    word-break:normal; 
+    text-align: center;
+    overflow: scroll;
+    -webkit-transition:all 1s;
+    transition: all 1s;
+}
+a:link, a:visited {
+ text-decoration: none;
+ color:black;
+}
+.container>.content>p>a:nth-of-type(1){
+	position: absolute;
+	left:0;
 	width:70%;
+	text-decoration: none;
 }
-.container>.content>div>p:nth-of-type(2){
-	float:left;
-	width:25%;
+.container>.content>p>a:nth-of-type(2){
+	position: absolute;
+	left: 70%;
+	width:30%;
+	text-decoration: none;
 }
 .back>.previous>img{
 position:relative;
