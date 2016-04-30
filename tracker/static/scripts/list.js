@@ -73,11 +73,6 @@
 				var rendering = renderRequests(results);
 				rendering = rendering.replace("bounceInFromBottom", "");
 				$(".current-request-section-list").prepend(rendering);
-				var addedItem = $(".current-request-section-list").children().first();
-				addedItem.addClass("add");
-				setTimeout(function(){
-					addedItem.removeClass("add");
-				}, 1000);
 			}
 		};
 	}());
@@ -112,6 +107,7 @@
 			deleteRequests : function(requestId){
 				var requests = Model.deleteRequests(requestId);//Update data in the database
 				requests.success(function(results) {
+					//Animation
 					var deleteItem = $("#delete-icon-id-"+requestId).parent().parent().addClass("remove");
 					setTimeout(function(){
 						deleteItem.remove();
@@ -133,6 +129,12 @@
 					$("#newRequestInterval").val("");
 					var newRequestJson = '[{ "request_id": "'+idObj.request_id+'", "request_url": "'+newRequestUrl+'", "request_interval": "'+newRequestInterval+'"}]'
 					View.addRequests($.parseJSON(newRequestJson));   //Display
+					//Animation
+					var addedItem = $(".current-request-section-list").children().first();
+					addedItem.addClass("add");
+					setTimeout(function(){
+						addedItem.removeClass("add");
+					}, 1000);
 				});
 				requests.error(function(textStatus, errorThrown) {
 					alert("Add data error!");
