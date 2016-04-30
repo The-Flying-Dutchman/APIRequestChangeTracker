@@ -23,7 +23,7 @@
                       Hi {{ current_user.id }}!
                     {% endif %}
 
-					 <input type="button" value="LOGOUT" />
+					 <input type="button" value="LOGOUT" href="/logout"/>
 				</p>
 
 				<input type="text" name="request_url"  id="newRequestUrl" placeholder=" Request URL" />
@@ -38,7 +38,7 @@
 </body>
 <script type="text/template" id="request-template">
       <div class="current-request-section bounceInFromBottom">
-		<div class="display" onclick="javascript: location.href='/detail?request_id=${requestId}'">
+		<div class="display" onclick="javascript: location.href='/detail?${requestId}'">
 			<p>Request URL:<span>${requestURL}</span></p>
 			<p>Time interval&nbsp;:<span>${timeInterval}</span></p>
 			<a class="edit-icon"><img src="../static/images/edit.png" /></a>

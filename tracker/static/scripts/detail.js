@@ -3,8 +3,7 @@ $(function(){
 		var Model = (function() {
 			var URL = "/get_request_details";
 			var currentPageURL=$(location).attr('href');
-			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('?request_id=')+12);
-			console.log(requestId)
+			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('/detail?') + 8);
 			return {
 				getChanges : function() {
 					return $.ajax({
