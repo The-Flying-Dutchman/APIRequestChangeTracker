@@ -276,6 +276,11 @@ body{
 	-webkit-animation: remove 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
   	animation: remove 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
 }
+.add{
+	opacity: 0;
+ 	-webkit-animation: add 1s cubic-bezier(.14,.25,.52,1.56) forwards;
+ 	animation: add 1s cubic-bezier(.14,.25,.52,1.56) forwards
+}
 @-webkit-keyframes bounceInFromTop {
     0% {-webkit-transform: translateY(-150%);opacity:0.5;}
     25% {-webkit-transform: translateY(-150%);opacity:0.5;}
@@ -317,5 +322,24 @@ body{
     opacity: 0;
     -webkit-transform: translateY(600px) rotateZ(90deg);
     transform: translateY(600px) rotateZ(90deg)
+  }
+}
+@-webkit-keyframes add {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-300px);
+    transform: translateY(-300px)
+  }
+
+  70% {
+    opacity: 1;
+    -webkit-transform: translateY(50px);
+    transform: translateY(50px)
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+    transform: translateY(0)
   }
 }
