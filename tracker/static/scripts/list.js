@@ -73,6 +73,7 @@
 				var rendering = renderRequests(results);
 				rendering = rendering.replace("bounceInFromBottom", "");
 				$(".current-request-section-list").prepend(rendering);
+				$(".current-request-section-list").children().first().addClass("add");
 			}
 		};
 	}());
