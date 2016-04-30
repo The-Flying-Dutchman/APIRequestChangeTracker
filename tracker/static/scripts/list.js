@@ -107,7 +107,10 @@
 			deleteRequests : function(requestId){
 				var requests = Model.deleteRequests(requestId);//Update data in the database
 				requests.success(function(results) {
-					$("#delete-icon-id-"+requestId).parent().parent().fadeOut();
+					var deleteItem = $("#delete-icon-id-"+requestId).parent().parent().addClass("remove");
+					setTimeout(function(){
+						deleteItem.remove();
+					},1000);
 				});
 				requests.error(function(textStatus, errorThrown) {
 					alert("Delete data error!");
