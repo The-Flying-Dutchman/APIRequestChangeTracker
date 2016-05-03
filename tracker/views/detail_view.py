@@ -6,8 +6,8 @@ from utils.json_util import DateTimeEncoder
 detail_model = DetailModel()
 
 
-@app.route('/detail', methods=['GET'])
-def detail():
+@app.route('/detail/<request_id>', methods=['GET'])
+def detail(request_id):
      return render_template('detail.html')
 
 @app.route('/get_request_details', methods=['GET'])

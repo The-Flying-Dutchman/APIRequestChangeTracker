@@ -19,11 +19,21 @@ class RequestDataDao:
             print e
 
 
-    def delete_request_data(self, requestdataid):
-        if requestdataid:
+    def delete_request_data_by_data_id(self, data_id):
+        if data_id:
             with self.connection.cursor() as cursor:
                 sql = "DELETE FROM request_data WHERE data_id = %s"
-                cursor.execute(sql, requestdataid)
+                cursor.execute(sql, data_id)
+                self.connection.commit()
+                return "success"
+        else:
+            return "Please pass in request data id"
+
+    def delete_request_data_by_request_id(self, data_request_id):
+        if data_request_id:
+            with self.connection.cursor() as cursor:
+                sql = "DELETE FROM request_data WHERE data_request_id = %s"
+                cursor.execute(sql, data_request_id)
                 self.connection.commit()
                 return "success"
         else:

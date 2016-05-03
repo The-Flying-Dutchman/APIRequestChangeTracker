@@ -47,16 +47,18 @@ def update_request():
         request_interval = request.form['request_interval'].encode('utf-8')
         list_model.update_request(request_id, request_url, request_interval)
 
-        make_response('{"success":"update success"}', 200)
+        return make_response('{"success":"update success"}', 200)
     except Exception as e:
         print e
-        make_response('{"error":"update fails"}', 409)
+        return make_response('{"error":"update fails"}', 409)
 
 
 @app.route('/delete_request', methods=['DELETE'])
 def delete_request():
     try:
-        request_id = request.args.get("request_id", '').encode("utf-8")
+        request_id = request.form['request_id'].encode('utf-8')
         list_model.delete_request(request_id)
+        return make_response('{"success":"delete success"}', 200)
     except Exception as e:
         print e
+        return make_response('{"error":"delete fails"}', 409)

@@ -65,13 +65,16 @@ def user_loader(email):
 
 @login_manager.request_loader
 def request_loader(request):
-    email = request.form.get('email').encode("utf-8")
+    try:
+        email = request.form.get('email').encode("utf-8")
 
-    user = login_model.get_user_info(email)
+        user = login_model.get_user_info(email)
 
-    if not user:
+        if not user:
+            return
+        password = request.form.get("password").encode("utf-8")
+        user.is_authenticated = bcrypt.hashpw(password, user.password) == user.password
+
+        return user
+    except:
         return
-    password = request.form.get("password").encode("utf-8")
-    user.is_authenticated = bcrypt.hashpw(password, user.password) == user.password
-
-    return user
