@@ -1,21 +1,13 @@
 import requests
-import pymysql
+import pymysql, time, threading
 
-DB_HOST = "162.243.65.63"
-DB_USERNAME = "root"
-DB_PASSWORD = "weisql"
+from tracker.dao.sql_connection import SqlConnection
 
-class SqlConnection:
-    connection = pymysql.connect(host=DB_HOST,
-                                 user=DB_USERNAME,
-                                 password=DB_PASSWORD,
-                                 db='api_tracker',
-                                 charset='utf8mb4',
-                                 cursorclass=pymysql.cursors.DictCursor)
-
-class Crawler:
-    def __init__(self):
+class CrawlerThread (threading.Thread):
+    def __init__(self, name):
+        threading.Thread.__init__(self)
         self.connection = SqlConnection.connection
+        self.name = name
 
     def perform_requests(self):
         with self.connection.cursor() as cursor:
@@ -46,5 +38,10 @@ class Crawler:
             
         return ""
 
-crawler = Crawler()
-crawler.perform_requests()
+    def run(self):
+        print 'thread %s is running...' % threading.current_thread().name
+        self.perform_requests()
+        print 'thread will sleep 5 minutes.'
+        time.sleep(5 * 60)
+
+request_update_thread = CrawlerThread("RequestUpdateThread")

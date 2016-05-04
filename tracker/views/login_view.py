@@ -1,6 +1,6 @@
 from tracker import *
 import flask.ext.login as flask_login
-from flask import request, make_response, url_for, redirect
+from flask import request, make_response, url_for, redirect, render_template
 from tracker.models.login_model import LoginModel
 import bcrypt
 
@@ -41,7 +41,6 @@ def login():
         make_response('{"error":"Email and password doesn\'t match"}', 409)
 
 
-
 @app.route('/protected')
 @flask_login.login_required
 def protected():
@@ -51,7 +50,7 @@ def protected():
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return redirect(url_for('/'))
+    return render_template('index.html')
 
 
 @login_manager.user_loader
