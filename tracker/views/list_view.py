@@ -2,7 +2,7 @@ from tracker import *
 from flask import request, make_response, url_for, redirect
 from tracker.models import ListModel
 import json
-from utils.json_util import DateTimeEncoder
+from tracker.utils.json_util import DateTimeEncoder
 from flask import render_template
 
 list_model = ListModel()
