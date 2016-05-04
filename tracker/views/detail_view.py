@@ -2,7 +2,7 @@ from flask import request, make_response, render_template, redirect
 from tracker.models.detail_model import DetailModel
 from tracker import *
 import json
-from utils.json_util import DateTimeEncoder
+from tracker.utils.json_util import DateTimeEncoder
 detail_model = DetailModel()
 
 
