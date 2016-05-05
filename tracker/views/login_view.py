@@ -24,7 +24,7 @@ def create_user():
         flask_login.login_user(user)
         return redirect(url_for('list'))
     except:
-        return make_response('{"error":"Email already exists in the system"}', 409)
+        return render_template('index.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -37,8 +37,10 @@ def login():
             user = login_model.get_user_info(email)
             flask_login.login_user(user)
             return redirect(url_for('list'))
+        else:
+             return render_template('index.html')
     except:
-        make_response('{"error":"Email and password doesn\'t match"}', 409)
+        return render_template('index.html')
 
 
 @app.route('/protected')
