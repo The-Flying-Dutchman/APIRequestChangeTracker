@@ -83,6 +83,7 @@
 			loadAndDisplayRequests : function() {
 				var requests = Model.getRequests();//Load
 				requests.success(function(results) {
+					console.log(results)
 					View.displayRequests(results);   //Display
 				});
 				requests.error(function(textStatus, errorThrown) {

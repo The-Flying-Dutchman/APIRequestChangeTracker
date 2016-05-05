@@ -10,7 +10,7 @@ class LoginModel:
     def create_user(self, email, password):
         user = self.user_dao.select_user_by_useremail(email)
         if user:
-            return user.user_id
+            return None
         else:
             user = User(email, password)
             user.password = bcrypt.hashpw(password, bcrypt.gensalt())
@@ -19,6 +19,7 @@ class LoginModel:
 
     def login(self, email, password):
         user = self.user_dao.select_user_by_useremail(email)
+        if not user: return False
         if (bcrypt.hashpw(password, user["user_password"].encode('utf-8')) == user["user_password"].encode('utf-8')):
             return True
         else:
