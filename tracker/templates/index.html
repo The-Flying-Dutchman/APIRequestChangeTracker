@@ -5,29 +5,14 @@
     <script src="../static/scripts/jquery-2.2.1.min.js"></script>
     <script src="../static/scripts/index.js"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
-<<<<<<< HEAD
-<!-- 
-=======
->>>>>>> a8fe603258383fc79b66c43ab4bebd3b4ba4269c
+
     <script type="text/javascript">
 
         function login() {
             $.ajax({
                 url: "/login",
                 data: $("#loginForm").serialize(),
-<<<<<<< HEAD
-                type: "post",
-                success: function (data) {
-                    var data = jQuery.parseJSON(data)
-                    if (data.message == "success") {
-                        location.href="/list";
-                    } else {
-                        location.href="/"
-                    }
-                },
-                error: function () {
-                    alert("error");
-=======
+
                 type: "POST",
                 success: function (data) {
                     var data = jQuery.parseJSON(data)
@@ -39,64 +24,12 @@
                 },
                 error: function () {
                     location.href = "/"
->>>>>>> a8fe603258383fc79b66c43ab4bebd3b4ba4269c
                 }
             })
         }
 
     </script>
 
-    <script type="text/javascript">
-        function register() {
-            if ($("#pass").val() == $("#ver").val()) {
-                $.ajax({
-<<<<<<< HEAD
-=======
-
->>>>>>> a8fe603258383fc79b66c43ab4bebd3b4ba4269c
-                    type: "POST",
-                    url: "/register",
-                    data: $("#registerForm").serialize(),
-                    success: function (data) {
-<<<<<<< HEAD
-                        if (data.message == "success") {
-                            //redriect to user
-=======
-                        var data = jQuery.parseJSON(data)
-                        if (data.message == "success") {
-                            location.href = "/list";
-                        } else {
-                            location.href = "/"
-                        }
-                    },
-                    error: function (data) {
-                        location.href = "/"
-                    }
-                })
-            } else {
-                $("#pass").val('')
-                $('#ver').val('')
-                alert("password doesn't match")
-            }
-        }
-    </script>
->>>>>>> a8fe603258383fc79b66c43ab4bebd3b4ba4269c
-
-                            document.cookie("user_id=data.user_id");
-                            // user_id = data.user_id
-                            window.open("list.html");
-                        } else {
-                            //user info wrong
-                        }
-                    },
-                    error: function (data) {
-
-                    }
-                })
-            }
-        }
-    </script>
--->
 </head>
 <body>
 <div class="logo fadeIn">
@@ -111,8 +44,9 @@
     <div class="content">
         <form id="loginForm"> <!-- placeholder value for Wei Li's API -->
             <input type="email" name="email" placeholder=" Email" maxlength="30" required/>
-            <input type="password" name="password" placeholder=" Password" maxlength="16" pattern="[0-9a-zA-Z]{6,16}" title="Password consists of letters and numbers ranging from 6-16 characters!" required/>
-            <input type="submit" value="LOGIN" class="submit"/>
+            <input type="password" name="password" placeholder=" Password" maxlength="16" pattern="[0-9a-zA-Z]{6,16}"
+                   title="Password consists of letters and numbers ranging from 6-16 characters!" required/>
+            <input type="submit" value="LOGIN" class="submit" onclick="login();"/>
         </form>
 
     </div>
@@ -125,10 +59,13 @@
     <div class="content">
         <form id="registerForm"><!--PLACEHOLDER-->
             <input type="email" name="email" placeholder="Email" maxlength="30" required/>
-            <input type="password" id="pass" name="password" id="password" placeholder=" Password" maxlength="16" pattern="[0-9a-zA-Z]{6,16}" title="Password consists of letters and numbers ranging from 6-16 characters!" required/>
-            <input type="password" id="ver" name="verify" id="verify" placeholder=" Password Verification" maxlength="16" required  />
+            <input type="password" id="pass" name="password" id="password" placeholder=" Password" maxlength="16"
+                   pattern="[0-9a-zA-Z]{6,16}"
+                   title="Password consists of letters and numbers ranging from 6-16 characters!" required/>
+            <input type="password" id="ver" name="verify" id="verify" placeholder=" Password Verification"
+                   maxlength="16" required/>
             <p id="indicator">Password does not match!</p>
-            <input type="submit" value="SUBMIT" class="submit" onclick="if(!pwdVerify())return false;" />
+            <input type="submit" value="SUBMIT" class="submit" onclick="if(!pwdVerify())return false;"/>
         </form>
 
     </div>
