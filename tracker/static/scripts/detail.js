@@ -1,10 +1,10 @@
 $(function(){
 		//==========================Model==========================
 		var Model = (function() {
-			//var URL = "/get_request_details";
-			var URL = "http://localhost:8080/jQuery_MVC/test-change.json";
+			var URL = "/get_request_details";
+			//var URL = "http://localhost:8080/jQuery_MVC/test-change.json";
 			var currentPageURL=$(location).attr('href');
-			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('/detail?') + 8);
+			var requestId = currentPageURL.substring(currentPageURL.lastIndexOf('/detail/') + 8);
 			return {
 				getChanges : function() {
 					return $.ajax({

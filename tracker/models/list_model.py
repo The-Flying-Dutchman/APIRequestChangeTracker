@@ -50,11 +50,10 @@ class ListModel:
         except:
             return False
 
-
     def delete_request(self, request_id):
         try:
             self.request_record_dao.delete_request_by_requestid(request_id)
-            self.request_data_dao.select_request_data_by_requestid(request_id)
+            self.request_data_dao.delete_request_data_by_request_id(request_id)
             return True
         except:
             return False

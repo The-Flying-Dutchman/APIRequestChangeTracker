@@ -1,6 +1,6 @@
 from tracker import *
 import flask.ext.login as flask_login
-from flask import request, make_response, url_for, redirect
+from flask import request, make_response, url_for, redirect, render_template
 from tracker.models.login_model import LoginModel
 import bcrypt
 
@@ -24,7 +24,7 @@ def create_user():
         flask_login.login_user(user)
         return redirect(url_for('list'))
     except:
-        return make_response('{"error":"Email already exists in the system"}', 409)
+        return render_template('index.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -37,9 +37,10 @@ def login():
             user = login_model.get_user_info(email)
             flask_login.login_user(user)
             return redirect(url_for('list'))
+        else:
+             return render_template('index.html')
     except:
-        make_response('{"error":"Email and password doesn\'t match"}', 409)
-
+        return render_template('index.html')
 
 
 @app.route('/protected')
@@ -51,7 +52,7 @@ def protected():
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
-    return redirect(url_for('/'))
+    return render_template('index.html')
 
 
 @login_manager.user_loader
@@ -65,13 +66,16 @@ def user_loader(email):
 
 @login_manager.request_loader
 def request_loader(request):
-    email = request.form.get('email').encode("utf-8")
+    try:
+        email = request.form.get('email').encode("utf-8")
 
-    user = login_model.get_user_info(email)
+        user = login_model.get_user_info(email)
 
-    if not user:
+        if not user:
+            return
+        password = request.form.get("password").encode("utf-8")
+        user.is_authenticated = bcrypt.hashpw(password, user.password) == user.password
+
+        return user
+    except:
         return
-    password = request.form.get("password").encode("utf-8")
-    user.is_authenticated = bcrypt.hashpw(password, user.password) == user.password
-
-    return user

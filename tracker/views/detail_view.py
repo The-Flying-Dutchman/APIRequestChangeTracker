@@ -2,12 +2,12 @@ from flask import request, make_response, render_template, redirect
 from tracker.models.detail_model import DetailModel
 from tracker import *
 import json
-from utils.json_util import DateTimeEncoder
+from tracker.utils.json_util import DateTimeEncoder
 detail_model = DetailModel()
 
 
-@app.route('/detail', methods=['GET'])
-def detail():
+@app.route('/detail/<request_id>', methods=['GET'])
+def detail(request_id):
      return render_template('detail.html')
 
 @app.route('/get_request_details', methods=['GET'])

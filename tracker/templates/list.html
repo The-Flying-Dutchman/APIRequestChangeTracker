@@ -39,8 +39,8 @@
 <script type="text/template" id="request-template">
       <div class="current-request-section bounceInFromBottom">
 		<div class="display">
-			<p onclick="javascript: location.href='/detail?${requestId}'">Request URL:<span>${requestURL}</span></p>
-			<p onclick="javascript: location.href='/detail?${requestId}'">Time interval&nbsp;:<span>${timeInterval}</span></p>
+			<p onclick="javascript: location.href='/detail/${requestId}'">Request URL:<span>${requestURL}</span></p>
+			<p onclick="javascript: location.href='/detail/${requestId}'">Time interval&nbsp;:<span>${timeInterval}</span></p>
 			<a class="edit-icon"><img src="../static/images/edit.png" /></a>
 			<a class="delete-icon" id="delete-icon-id-${requestId}" requestId="${requestId}"><img src="../static/images/delete.png" /></a>
 		</div>
