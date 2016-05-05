@@ -19,7 +19,10 @@ class FlaskrTestCase(unittest.TestCase):
         assert 'request_id' in rv.data
 
     def test_detail(self):
-        pass
+        self.login('wei', 'wei')
+        rv = self.app.get('/get_request_details',
+                          data={"request_id":6})
+        assert 'request_id' in rv.data
 
     def login(self, username, password):
         return self.app.post('/login', data=dict(
