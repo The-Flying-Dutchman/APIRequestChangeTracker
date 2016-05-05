@@ -26,10 +26,10 @@
 					 <input type="button" value="LOGOUT" onclick="javascript:location.href='/logout'"/>
 				</p>
 
-				<input type="text" name="request_url"  id="newRequestUrl" placeholder=" Request URL" />
-				<input type="text" name="request_interval" id="newRequestInterval" placeholder=" Time interval" />
+				<input type="url" name="request_url"  id="newRequestUrl" placeholder=" Request URL" required />
+				<input type="number" name="request_interval" id="newRequestInterval" placeholder=" Time interval" min="1" max="24" required />
              	<input type="hidden" name="user_id"  value="{{ current_user.user_id }}" placeholder=" User iD" />
-				<input type="button" class ="submit-button" value="SUBMIT" />
+				<input type="submit" class ="submit-button" value="SUBMIT" />
 			</form>
 		</div>
 	</div>

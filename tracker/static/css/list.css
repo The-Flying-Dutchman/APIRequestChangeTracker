@@ -62,7 +62,7 @@ body{
     height:15%;
     margin:0 auto;
 }
-.new-request-section>.content>form>input[type="text"]{
+.new-request-section>.content>form>input[type="url"],.new-request-section>.content>form>input[type="number"]{
     width:80%;
     height:15%;
     margin:1%;

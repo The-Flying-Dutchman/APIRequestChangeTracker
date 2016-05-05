@@ -20,5 +20,24 @@
 			$(".register-section").addClass("rotateIn");
 		},400);
 	});
-	
+
 });
+
+function pwdVerify(){
+	var pwd1 = $("#pass").val();
+	var pwd2 = $("#ver").val();
+	if($('#registerForm')[0].checkValidity()){
+		if( pwd1 != pwd2){
+			$("#indicator").show();
+			$("#indicator").addClass("showFromTop");
+			setTimeout(function(){
+				$("#indicator").removeClass("showFromTop");
+				$("#indicator").fadeOut();
+			},2000);
+			return false;
+		}else{
+			return true;
+		}
+	}else
+		return true;
+}

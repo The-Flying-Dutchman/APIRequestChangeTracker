@@ -186,7 +186,10 @@
 	});
 	
 	$(document).on("click", ".submit-button",function(){
-		Controller.addRequests();
+		if($('#newRequestForm')[0].checkValidity())
+			Controller.addRequests();
+		else
+			$('#newRequestForm').find(':submit').click();
 	});
 	
 	//Animation
