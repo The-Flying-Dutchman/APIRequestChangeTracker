@@ -23,8 +23,13 @@ class TrackerTestCase(unittest.TestCase):
         ))
         assert 'request_id' in rv.content
 
-        rv = requests.put(self.URL + "/update_request", data=dict(
-                request_id=1,
+        rv = requests.delete(self.URL + "/delete_request", data=dict(
+                request_id="2"
+        ))
+        assert 'success' in rv.content
+
+        rv = requests.post(self.URL + "/update_request", data=dict(
+                request_id="1",
                 request_url="https://pages.github.com/versions.json",
                 request_interval=3
         ))
@@ -32,7 +37,7 @@ class TrackerTestCase(unittest.TestCase):
 
     def test_detail(self):
         self.login('test@gmail', '123456')
-        rv = requests.get(self.URL + '/get_request_details?request_id=2')
+        rv = requests.get(self.URL + '/get_request_details?request_id=1')
         assert 'request_id' in rv.content
 
     def login(self, email, password):
