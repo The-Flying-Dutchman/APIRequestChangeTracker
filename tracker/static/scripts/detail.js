@@ -23,6 +23,7 @@ $(function(){
 			var template = $("#change-template").html();
 
 			var applyTemplate = function(template, data) {
+				console.log(data)
 				return template
 					.replace(/\${data_request_id}/g, data.data_request_id)
 					.replace(/\${detail}/g, data.data_content)

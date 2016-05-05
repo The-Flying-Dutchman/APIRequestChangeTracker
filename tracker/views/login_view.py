@@ -17,14 +17,17 @@ def create_user():
         password = request.form['password'].encode("utf-8")
 
         user_id = login_model.create_user(email, password)
-        user = login_model.get_user_info(email)
-        user.id = email
-        user.user_id = user_id
+        if user_id:
+            user = login_model.get_user_info(email)
+            user.id = email
+            user.user_id = user_id
 
-        flask_login.login_user(user)
-        return redirect(url_for('list'))
+            flask_login.login_user(user)
+            return make_response('{"message":"success"}', 200)
+        else:
+            return make_response('{"message":"Email already exists in the system."}', 409)
     except:
-        return render_template('index.html')
+        return make_response('{"message":"Email already exists in the system."}', 409)
 
 
 @app.route('/login', methods=['POST'])
@@ -36,9 +39,9 @@ def login():
         if login_model.login(email, password):
             user = login_model.get_user_info(email)
             flask_login.login_user(user)
-            return redirect(url_for('list'))
+            return make_response('{"message":"success"}', 200)
         else:
-             return render_template('index.html')
+            return make_response('{"message":"Email and password doesn\'t match."}', 409)
     except:
         return render_template('index.html')
 
