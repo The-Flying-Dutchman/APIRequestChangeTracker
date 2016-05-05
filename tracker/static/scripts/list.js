@@ -207,3 +207,11 @@
 		Controller.loadAndDisplayRequests();
     });
 });
+
+function check(){
+	var obj = document.getElementById("newRequestForm"); 
+	if(obj.checkValidity())
+		return false;
+	else
+		return true;
+}
