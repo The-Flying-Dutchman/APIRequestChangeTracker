@@ -8,25 +8,7 @@
 
     <script type="text/javascript">
 
-        function login() {
-            $.ajax({
-                url: "/login",
-                data: $("#loginForm").serialize(),
 
-                type: "POST",
-                success: function (data) {
-                    var data = jQuery.parseJSON(data)
-                    if (data.message == "success") {
-                        location.href = "/list";
-                    } else {
-                        location.href = "/"
-                    }
-                },
-                error: function () {
-                    location.href = "/"
-                }
-            })
-        }
 
     </script>
 

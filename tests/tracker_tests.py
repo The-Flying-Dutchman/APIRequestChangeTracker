@@ -15,7 +15,7 @@ class FlaskrTestCase(unittest.TestCase):
     def test_list(self):
         self.login('wei', 'wei')
         rv = self.app.get('/get_request_lists',
-                          data = {"user_id":6})
+                          data={"user_id":6})
         assert 'request_id' in rv.data
 
     def test_detail(self):

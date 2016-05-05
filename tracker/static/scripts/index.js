@@ -58,5 +58,26 @@ function pwdVerify() {
     } else {
         return true;
     }
+}
 
+function login() {
+    if ($('#loginForm')[0].checkValidity()) {
+        $.ajax({
+            url: "/login",
+            data: $("#loginForm").serialize(),
+
+            type: "POST",
+            success: function (data) {
+                var data = jQuery.parseJSON(data)
+                if (data.message == "success") {
+                    location.href = "/list";
+                } else {
+                    location.href = "/"
+                }
+            },
+            error: function () {
+                location.href = "/"
+            }
+        })
+    }
 }
